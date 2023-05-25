@@ -1,0 +1,193 @@
+#################################################################
+# KEYBOARD BINDINGS FOR ANY TWM
+#################################################################
+
+
+# LAUNCH APPLICATIONS
+
+# Terminal
+super + Return
+    xfce4-terminal
+
+super + KP_Enter
+	xfce4-terminal
+
+super + t
+    xfce4-terminal
+
+ctrl + alt + t
+    xfce4-terminal
+
+ctrl + alt + Return
+    xfce4-terminal
+
+# Dmenu run commands
+super + d
+	dmenu_run -b -i -p "Your command is my wish" -nb "#282828" -nf "#FABD2F" -sb "#FABD2F" -sf "#282828" -fn "JetBrainsMono Nerd Font:pixelsize=16"
+
+# Rofi Appfinder
+super + space
+    rofi -m -1 -modi drun -show drun -line padding 4 -hide-scrollbar -show-icons
+
+# File-Manager
+super + e
+	thunar
+
+# Web Browsers
+super + i
+    google-chrome-stable
+
+super + shift + i
+    firefox
+
+# Email client
+super + m
+    thunderbird
+
+# Lock machine
+super + x
+    betterlockscreen -l
+
+# Pavucontrol
+super + v
+    pavucontrol
+
+# Bluetooth
+super + b
+    blueman-manager
+
+# Wifi & Power management scripts
+super + ctrl + w
+    $HOME/.config/rofi/scripts/rofi_wifi.sh
+
+super + ctrl + p
+    $HOME/.config/rofi/scripts/rofi_power.sh
+
+
+# RELOAD CONFIGS
+
+# Reload sxhkd:
+super + shift + s
+	pkill -USR1 -x sxhkd
+
+
+# FN KEYS
+
+# Brightness up
+XF86MonBrightnessUp
+    brightnessctl s 5%+
+
+# Brightness down
+XF86MonBrightnessDown
+    brightnessctl s 5%-
+
+# Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 5%+
+
+# Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 5%-
+
+# Mute volume
+XF86AudioMute
+    amixer set Master toggle
+
+# Play
+XF86AudioPlay
+    # playerctl play-pause
+
+# Next
+XF86AudioNext
+    # playerctl next
+
+# Previous
+XF86AudioPrev
+    # playerctl previous
+
+# Stop
+XF86AudioStop
+    # playerctl stop
+
+
+#################################################################
+# QTILE SPECIFIC KEYBOARD BINDINGS
+#################################################################
+
+
+# Reload or quit Qtile
+
+# Reload Qtile
+# super + shift + r
+#    qtile-cmd -o cmd -f restart
+
+# Quit Qtile
+# super + shift + x
+#    qtile-cmd -o cmd -f shutdown
+
+
+# Manage windows
+
+# Toggle fullscreen of window
+# super + f
+#    qtile-cmd -o window -f toggle_fullscreen
+
+# Normalize layout (undo size changes)
+# super + n
+#    qtile-cmd -o layout -f normalize
+
+# Kill focused window
+# super + q
+   # qtile-cmd -o window -f kill
+
+# Focus window (Navigate)
+# super + {Left,Down,Up,Right}
+#    qtile-cmd -o layout -f {left,down,up,right}
+
+# Focus window (Navigate)
+# super + {h,j,k,l}
+#    qtile-cmd -o layout -f {left,down,up,right}
+
+# Focus selected desktop
+# super + Tab
+#    qtile-cmd -o screen -f next_group
+
+
+# Manage layouts
+
+# Cycle layouts
+# super + space
+#    qtile-cmd -o cmd -f next_layout
+
+# Toggle Floating Layout
+# super + shift + space
+#    qtile-cmd -o window -f toggle_floating
+
+# Flip layout for MonadTall/MonadWide
+# super + shift + f
+#    qtile-cmd -o layout -f flip
+
+# Move windows up or down for MonadTall/MonadWide layouts
+# super + shift + {Up,Down,Left,Right}
+#    qtile-cmd -o layout -f {shuffle_up,shuffle_down,swap_left,swap_right}
+
+# Move windows up or down in BSP layout
+# super + shift + {h,j,k,l}
+#    qtile-cmd -o layout -f {shuffle_left,shuffle_down,shuffle_up,shuffle_right}
+
+# Flip layout for BSP
+# super + alt + {h,j,k,l}
+#    qtile-cmd -o layout -f {flip_left,flip_down,flip_up,flip_right}
+
+
+# Rererved keys
+
+# RESIZE UP, DOWN, LEFT, RIGHT ##
+# super + control + l
+# super + control + Right
+# super + control + h
+# super + control + Left
+# super + control + k
+# super + control + Up
+# super + control + j
+# super + control + Down

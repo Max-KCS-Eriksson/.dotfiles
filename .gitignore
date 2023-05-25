@@ -1,2 +1,9 @@
 # P10k
 p10k.zsh
+
+# Webpage monitor
+webpage_monitor_settings.py
+comparison_*.html
+
+# Python
+__pycache__/
