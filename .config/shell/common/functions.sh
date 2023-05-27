@@ -1,14 +1,19 @@
+# Enables the `nvm` function.
+# Node is required by some programs and packages, like Pyright LSP. It is there for
+# more practical to always have NVM enabled, at the cost of slow startup.
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Load functionality that would slow down shell startup if always loaded.
 loadcompletion() {
-	# Loads functionality that would slow down shell startup if always loaded.
 	case "$1" in
 	"pyenv")
-		# Loads completion for Pyenv
+		# Load completion for Pyenv
 		export PYENV_ROOT="$HOME/.pyenv"
 		command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 		eval "$(pyenv init -)"
 		;;
 	"pipenv")
-		# Loads completion for Pipenv
+		# Load completion for Pipenv
 		case "$SHELL" in
 		"/bin/bash")
 			eval "$(_PIPENV_COMPLETE=bash_source pipenv)"
@@ -22,9 +27,7 @@ loadcompletion() {
 		esac
 		;;
 	"nvm")
-		# Load NVM and completion
-		export NVM_DIR="$HOME/.nvm"
-		[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+		# Load NVM completion
 		[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 		;;
 	*)
