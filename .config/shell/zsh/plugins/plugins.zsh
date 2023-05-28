@@ -4,7 +4,7 @@ config="$HOME/.config/shell/zsh/plugins"
 [[ ! -d ${config} ]] && mkdir -p ${config}
 
 # Prompt
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit ${config}/p10k/p10k.zsh.
 if [[ ! -d ${plugins}/p10k ]]; then
     echo ''
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${plugins}/p10k
@@ -12,7 +12,7 @@ if [[ ! -d ${plugins}/p10k ]]; then
 else
     source ${plugins}/p10k/powerlevel10k.zsh-theme
     [[ ! -f ${config}/p10k/p10k.zsh ]] || source ${config}/p10k/p10k.zsh  # NOTE: Source after theme
-    typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet  # WARNING: Supresser warnings
+    typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet  # WARNING: Suppresses warnings
 fi
 
 # Autopairs
@@ -35,7 +35,7 @@ else
 fi
 
 # Syntax highlighting
-# Customize syntax highlighting by editing ~/.config/zsh/plugins/fsh/${theme}.ini
+# Customize syntax highlighting by editing ${config}/fsh/${theme}.ini
 # NOTE: Must be sourced last
 
 theme='fsh'  # Name of theme file (without file extension) to use for customization.
