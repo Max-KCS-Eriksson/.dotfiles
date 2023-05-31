@@ -6,8 +6,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Add color to basic commands.
 alias ls="ls -F --color=auto"
-#alias dir="dir --color=auto"
-#alias vdir="vdir --color=auto"
+alias dir="dir --color=auto"
+alias vdir="vdir --color=auto"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
@@ -31,8 +31,13 @@ alias cp="cp -iv"
 alias v="nvim"
 alias v.="nvim ."
 
+alias fzp="fzf --preview 'bat --color=always {}'"
+
 alias xcc="xclip -selection clipboard"
 alias tree="tree --dirsfirst -I '.git/|.gitignore|*_env/|__pycache__/|*.egg-info/|build/'"
+
+# Terminal
+alias another='xfce4-terminal --working-directory=$PWD'
 
 # Input settings
 alias keyus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
