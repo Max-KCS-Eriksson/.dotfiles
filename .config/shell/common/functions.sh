@@ -3,6 +3,9 @@
 # more practical to always have NVM enabled, at the cost of slow startup.
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+# Enable `jenv`
+eval "$(jenv init -)"
+
 # Load functionality that would slow down shell startup if always loaded.
 loadcompletion() {
 	case "$1" in
