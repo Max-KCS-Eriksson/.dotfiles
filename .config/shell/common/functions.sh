@@ -3,18 +3,15 @@
 # more practical to always have NVM enabled, at the cost of slow startup.
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+# Enable `pyenv`
+eval "$(pyenv init -)"
+
 # Enable `jenv`
 eval "$(jenv init -)"
 
 # Load functionality that would slow down shell startup if always loaded.
 loadcompletion() {
 	case "$1" in
-	"pyenv")
-		# Load completion for Pyenv
-		export PYENV_ROOT="$HOME/.pyenv"
-		command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-		eval "$(pyenv init -)"
-		;;
 	"pipenv")
 		# Load completion for Pipenv
 		case "$SHELL" in
