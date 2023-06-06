@@ -16,7 +16,7 @@ alias egrep="egrep --color=auto"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 
-alias csb="clear; source $HOME/.config/shell/common/extras/splashscreen.sh"
+alias csb="clear; source $HOME/.config/shell/common/extras/greeter.sh"
 
 alias ..="cd .."
 alias c="clear"
@@ -27,6 +27,8 @@ alias cll="clear; ll"
 alias mv="mv -iv"
 alias rm="rm -iv"
 alias cp="cp -iv"
+
+alias gr="grep"
 
 alias v="nvim"
 alias v.="nvim ."
