@@ -36,7 +36,7 @@ alias v.="nvim ."
 alias fzp="fzf --preview 'bat --color=always {}'"
 
 alias xcc="xclip -selection clipboard"
-alias tree="tree --dirsfirst -I '.git/|.gitignore|*_env/|__pycache__/|*.egg-info/|build/'"
+alias tree="tree --dirsfirst -F -I '.git/|.gitignore|*_env/|__pycache__/|*.egg-info/|build/'"
 
 # Terminal
 alias another='xfce4-terminal --working-directory=$PWD'
