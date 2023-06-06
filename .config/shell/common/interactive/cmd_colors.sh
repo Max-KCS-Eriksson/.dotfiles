@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # ls colors by file extension
-_LS_COLORS=$_LS_COLORS:'di=1;34:'
-_LS_COLORS=$_LS_COLORS:'*.json=0;36:*.yaml=0;36:*.toml=0;36:'
+_LS_COLORS=$_LS_COLORS:'di=1;34:tw=30;42:ow=1;37;42:st=37;44:'
+_LS_COLORS=$_LS_COLORS:'*.json=0;36:*.yaml=0;36:*.yml=0;36:*.toml=0;36:*.xml=0;36'
 _LS_COLORS=$_LS_COLORS:'*.sh=0;92:*.zsh=0;92:'
 _LS_COLORS=$_LS_COLORS:'*.gitignore=0;37:*.dockerignore=0;37:'
 _LS_COLORS=$_LS_COLORS:'*Dockerfile=0;35:*.env=0;35:'
