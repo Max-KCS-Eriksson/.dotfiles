@@ -211,6 +211,8 @@
     stack.yaml
     # Extra anchors
     Pipfile
+    pom.xml
+    settings.gradle
   )
   typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
   # If set to "first" ("last"), remove everything before the first (last) subdirectory that contains
