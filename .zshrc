@@ -56,9 +56,10 @@ source "$HOME/.config/shell/common/interactive/cmd_colors.sh"
 source "$HOME/.config/shell/common/interactive/aliases.sh"
 
 
-# Functions
+# Functions and hooks
 
 source "$HOME/.config/shell/common/functions.sh"
+source "$HOME/.config/shell/zsh/util/init.zsh"
 
 
 # Greeter
