@@ -57,3 +57,10 @@ else
         echo "[\e[1;33m!!\e[0m] Created \e[0;34m${user_themes}/\e[1;35m${theme}.ini\e[0m to be used for configuring syntax highlighting"
     fi
 fi
+
+unset theme
+unset user_themes
+unset default_themes
+
+unset plugins
+unset config
