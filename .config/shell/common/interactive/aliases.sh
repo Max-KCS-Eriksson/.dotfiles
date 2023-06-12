@@ -20,7 +20,15 @@ alias tree="tree --dirsfirst -F -I '.git/|.gitignore|*_env/|__pycache__/|*.egg-i
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 
-alias ..="cd .."
+dots=".."
+target="cd .."
+for ((i = 0; i < 10; i++)); do
+	alias "$dots=$target"
+	dots+=".."
+	target+="/.."
+done
+unset dots target
+
 alias cdgr='cd $(git rev-parse --show-toplevel)'
 
 alias ll="ls -AlFh"
