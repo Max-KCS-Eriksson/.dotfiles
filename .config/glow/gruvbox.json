@@ -137,14 +137,15 @@
             },
             "name_class": {
                 "color": "#FABD2F",
-                "underline": true,
-                "bold": true
+                "underline": false,
+                "bold": false
             },
             "name_constant": {
                 "color": "#D3869B"
             },
             "name_decorator": {
-                "color": "#FABD2F"
+                "color": "#FABD2F",
+                "bold": true
             },
             "name_exception": {},
             "name_function": {
