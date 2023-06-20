@@ -13,3 +13,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Bat
 export BAT_THEME="gruvbox-dark"
+export BAT_PAGER="/bin/less"
