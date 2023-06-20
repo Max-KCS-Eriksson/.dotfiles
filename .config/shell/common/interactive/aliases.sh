@@ -16,6 +16,10 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 alias tree="tree --dirsfirst -F -I '.git/|.gitignore|*_env/|__pycache__/|*.egg-info/|build/'"
 
+# Hide from history
+alias mpv=" mpv"
+alias feh=" feh"
+
 # Quality of life command aliases.
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"

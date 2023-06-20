@@ -1,3 +1,5 @@
+export EDITOR="/usr/bin/nvim"
+
 # Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 
