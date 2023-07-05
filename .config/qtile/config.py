@@ -27,6 +27,7 @@ import os
 import subprocess
 
 from libqtile import hook
+
 from settings.color_theme import init_theme
 from settings.groups import init_groups
 from settings.keys import init_keybindings
@@ -72,16 +73,24 @@ def assign_app_group(client):
     d = {}
     # Use `$ xprop` to find the value of `WM_CLASS(STRING)`.
     # First field is sufficient.
+    # fmt: off
     d[groups[0].name] = []
     d[groups[1].name] = []
     d[groups[2].name] = []
     d[groups[3].name] = ["Insomnia", "insomnia"]
     d[groups[4].name] = ["Thunar", "thunar"]
-    d[groups[5].name] = ["Vlc", "vlc", "gl", "Mpv", "mpv", "Gimp", "gimp", "Steam"]
+    d[groups[5].name] = [
+        "Vlc", "vlc",
+        "gl",
+        "Mpv", "mpv",
+        "Gimp", "gimp",
+        "steamwebhelper", "steam", "Steam",
+    ]
     d[groups[6].name] = []
     d[groups[7].name] = ["TelegramDesktop", "telegram-desktop", "Discord", "discord"]
     d[groups[8].name] = ["Spotify", "spotify"]
     d[groups[9].name] = ["libreoffice-calc", "Mail", "Thunderbird", "thunderbird"]
+    # fmt: on
 
     wm_class = client.window.get_wm_class()[0]
 

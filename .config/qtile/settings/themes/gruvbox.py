@@ -4,7 +4,6 @@ def init_theme():
     black = ["#282828", "#928374"]
     red = ["#CC241D", "#FB4934"]
     green = ["#689D6A", "#8EC07C"]
-    # yellow = ["#D79921", "#FFFF55"]  # Moded bright color
     yellow = ["#D79921", "#FABD2F"]
     blue = ["#458588", "#83A598"]
     purple = ["#B16286", "#D3869B"]
@@ -23,13 +22,13 @@ def init_theme():
         "purple": purple,
         "cyan": cyan,
         "white": white,
-        # Special colors
         "orange": orange,
+        # Special colors
         "bg": black[0],
         "fg": white[1],
-        "primary": yellow,
-        "secondary": cyan,
-        "accent": green,
+        "primary": orange,
+        "secondary": yellow,
+        "accent": blue,
         "dim": dim,
         "warning": yellow[1],
         "danger": orange[1],
