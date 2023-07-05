@@ -2,7 +2,11 @@
 
 _cd_hook() {
     if [[ "$(pwd)" != "$HOME" ]]; then
-        ll
+        if [[ "$(ls -1 | wc -l)" -le 16 ]]; then
+            ll
+        else
+            l
+        fi
 
         # Allow running of auto commands per dir
         if [[ -f ./.auto ]]; then
