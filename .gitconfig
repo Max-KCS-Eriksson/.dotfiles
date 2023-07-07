@@ -1,0 +1,49 @@
+[include]
+    path = ~/.gitconfig_user
+
+[init]
+	defaultBranch = main
+
+[color]
+	ui = auto
+
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    light = false
+    line-numbers = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[alias]
+	s = status
+	ll = log --oneline
+	last = log -1 HEAD --stat
+    lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+
+    diff = diff -M
+	
+	ci = commit
+	p = push
+	poh = push origin HEAD
+
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	co = checkout
+	cob = checkout -b
+	del = branch -D
+
+	rv = remote -v
+	se = !git rev-list --all | xargs git grep -F
+
+	gl = config --global -l
