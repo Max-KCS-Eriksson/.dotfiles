@@ -11,7 +11,7 @@
     active-foreground:              rgba ( 250, 189, 47, 100 % );
 
     selected-normal-background:     #28282800;
-    selected-normal-foreground:     #FABD2F; // #8EC07C #FABD2F
+    selected-normal-foreground:     #FE8019; // #8EC07C #FABD2F #FE8019
     alternate-normal-foreground:    @foreground;
 
     selected-active-background:     rgba ( 26, 28, 35, 100 % );
