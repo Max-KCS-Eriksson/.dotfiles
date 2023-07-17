@@ -15,7 +15,7 @@ echo -ne '\e[6 q\e]'  # Steady beam
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 
@@ -88,3 +88,7 @@ export ZLE_RPROMPT_INDENT=0
 
 # NOTE: Source last
 source "$HOME/.config/shell/zsh/plugins/plugins.zsh"
+
+# NOTE: This must be at the end of the file for SDKMAN to work!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -62,4 +62,4 @@ alias rice="/usr/bin/git --git-dir=$HOME/.rice --work-tree=$HOME"
 
 # Scripts.
 alias csb="clear; source $HOME/.config/shell/common/extras/greeter.sh"
-alias rp="python3 $HOME/repos/projects/reading_progress/reading_progress.py"
+alias rp="python3 $HOME/repos/projects/cli/reading_progress/reading_progress.py"
