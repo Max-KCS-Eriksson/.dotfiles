@@ -28,7 +28,7 @@ dots=".."
 target="cd .."
 for ((i = 0; i < 10; i++)); do
 	alias "$dots=$target"
-	dots+=".."
+	dots+="."
 	target+="/.."
 done
 unset dots target
