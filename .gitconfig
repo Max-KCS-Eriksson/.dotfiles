@@ -19,6 +19,18 @@
     navigate = true
     light = false
     line-numbers = true
+    line-numbers-left-format = "{nm:^4}:"  ; Default: "{nm:^4}⋮"
+    line-numbers-left-style = gray  ; Divider between line-numbers
+    line-numbers-right-format = "{np:^4}│"  ; Default: "{np:^4}│"
+    line-numbers-right-style = gray  ; Divider right of line-numbers
+    line-numbers-minus-style = red
+    line-numbers-plus-style = green
+    file-style = yellow bold  ; File name
+    file-decoration-style = yellow box  ; File name border
+    hunk-header-style = "omit"  ; Opts: "file", "line-number", "syntax" or combi
+    hunk-header-decoration-style = gray ul
+    hunk-header-file-style = gray
+    hunk-header-line-number-style = gray bold
 
 [merge]
     conflictstyle = diff3
