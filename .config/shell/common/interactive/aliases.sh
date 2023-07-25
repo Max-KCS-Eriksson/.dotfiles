@@ -51,13 +51,24 @@ alias fzp="fzf --preview 'bat --color=always {}'"
 alias xcc="xclip -selection clipboard"
 
 # Terminal
-used_terminal_emulator=$(basename "/""$(ps -o cmd -f -p "$(cat /proc/"$(echo $$)"/stat | cut -d \  -f 4)" | tail -1 | sed 's/ .*$//')")
-if [[ "$used_terminal_emulator" == "xfce4-terminal" ]]; then
-	alias another='xfce4-terminal --working-directory=$PWD'
-elif [[ "$used_terminal_emulator" == "wezterm-gui" ]]; then
-	alias another='wezterm start --cwd $PWD'
+_thisTerm=$(basename "/""$(ps -o cmd -f -p "$(cat /proc/"$$"/stat | cut -d \  -f 4)" | tail -1 | sed 's/ .*$//')")
+export _thisTerm
+
+_termCmd=''
+if [[ "$_thisTerm" == "xfce4-terminal" ]]; then
+	_termCmd='xfce4-terminal --working-directory='
+elif [[ "$_thisTerm" == "wezterm-gui" ]]; then
+	_termCmd='wezterm start --cwd '
 fi
-unset used_terminal_emulator
+
+if [[ $_termCmd != '' ]]; then
+	alias another="$_termCmd"'$PWD'
+
+	# HACK: Used for spawning another terminal from Neovim
+	export _termCmd
+else
+	unset _termCmd
+fi
 
 # Input settings
 alias keyus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
