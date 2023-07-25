@@ -36,11 +36,16 @@ from settings.mouse import init_mouse_settings
 from settings.screens import init_screens
 
 wmname = "LG3D"
+
 follow_mouse_focus = False
 cursor_warp = False
 bring_front_click = False
+
 auto_fullscreen = True
+auto_minimize = False
+
 focus_on_window_activation = "focus"  # Options: "focus", "smart"
+
 main = None
 
 # Colors
