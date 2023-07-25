@@ -51,7 +51,13 @@ alias fzp="fzf --preview 'bat --color=always {}'"
 alias xcc="xclip -selection clipboard"
 
 # Terminal
-alias another='xfce4-terminal --working-directory=$PWD'
+used_terminal_emulator=$(basename "/""$(ps -o cmd -f -p "$(cat /proc/"$(echo $$)"/stat | cut -d \  -f 4)" | tail -1 | sed 's/ .*$//')")
+if [[ "$used_terminal_emulator" == "xfce4-terminal" ]]; then
+	alias another='xfce4-terminal --working-directory=$PWD'
+elif [[ "$used_terminal_emulator" == "wezterm-gui" ]]; then
+	alias another='wezterm start --cwd $PWD'
+fi
+unset used_terminal_emulator
 
 # Input settings
 alias keyus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
