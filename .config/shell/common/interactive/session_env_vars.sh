@@ -1,2 +1,3 @@
-# Gpg prompt tty
-export GPG_TTY=$(tty)
+# Gpg prompt
+GPG_TTY=$(tty)
+export GPG_TTY

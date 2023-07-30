@@ -3,8 +3,8 @@
 parent_dir="$HOME/.config/shell/zsh/util"
 
 # Source all files in this dir and its subdirectories.
-# All that is needed to add extra functionality is to create a new file, defining the
-# desired functionality.
+# All that is needed to add extra functionality is to create a new file, and it will be
+# sourced automatically.
 
 for content in "$parent_dir"/*; do
     if [[ -f "$content" && "$content" != "$parent_dir/init.zsh" ]]; then
