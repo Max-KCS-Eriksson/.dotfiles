@@ -1,14 +1,3 @@
-# Enables the `nvm` function.
-# Node is required by some programs and packages, like Pyright LSP. It is there for
-# more practical to always have NVM enabled, at the cost of slow startup.
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Enable `pyenv`
-eval "$(pyenv init -)"
-
-# Enable `jenv`
-eval "$(jenv init -)"
-
 # Load functionality that would slow down shell startup if always loaded.
 loadcompletion() {
 	case "$1" in
@@ -25,10 +14,6 @@ loadcompletion() {
 			echo "Not a supported shell: $SHELL"
 			;;
 		esac
-		;;
-	"nvm")
-		# Load NVM completion
-		[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 		;;
 	*)
 		echo "Not a supported argument"

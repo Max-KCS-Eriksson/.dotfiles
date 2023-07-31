@@ -1,5 +1,7 @@
 # Session specific Environmental variables
 
+# NOTE: Needs to be set first
+
 source "$HOME/.config/shell/common/interactive/session_env_vars.sh"
 
 
@@ -56,10 +58,15 @@ source "$HOME/.config/shell/common/interactive/cmd_colors.sh"
 source "$HOME/.config/shell/common/interactive/aliases.sh"
 
 
-# Functions and hooks
+# Functions and utils
 
 source "$HOME/.config/shell/common/functions.sh"
 source "$HOME/.config/shell/zsh/util/init.zsh"
+
+
+# Runtime management
+
+eval "$(rtx activate zsh)"
 
 
 # Greeter
@@ -88,7 +95,3 @@ export ZLE_RPROMPT_INDENT=0
 
 # NOTE: Source last
 source "$HOME/.config/shell/zsh/plugins/plugins.zsh"
-
-# NOTE: This must be at the end of the file for SDKMAN to work!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
