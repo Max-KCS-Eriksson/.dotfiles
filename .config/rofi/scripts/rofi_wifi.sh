@@ -73,6 +73,9 @@ $opt_disconnect_wifi*)
 	;;
 $opt_conned_wifi*)
 	select_network
+	if [[ ! $bssid ]]; then
+		exit
+	fi
 	enter_password
 	connect_wifi
 	check_wifi
