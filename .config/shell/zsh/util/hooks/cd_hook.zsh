@@ -3,9 +3,9 @@
 _cd_hook() {
     if [[ "$(pwd)" != "$HOME" ]]; then
         if [[ "$(ls -1 | wc -l)" -le 16 ]]; then
-            ll
+           ls -AlFh
         else
-            l
+            ls -AF
         fi
 
         # Allow running of auto commands per dir
