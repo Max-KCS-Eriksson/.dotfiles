@@ -1,5 +1,5 @@
 [include]
-    path = ~/.gitconfig_user
+    path = user
 
 [init]
 	defaultBranch = main
@@ -9,7 +9,7 @@
 
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore
+	excludesfile = .gitignore
     pager = delta
 
 [interactive]
