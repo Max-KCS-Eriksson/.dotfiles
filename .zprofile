@@ -5,8 +5,8 @@
 
 # Environmental variables
 
-source "$HOME/.config/shell/common/login/env_vars.sh"
-source "$HOME/.config/shell/common/login/paths.sh"
+source "$XDG_CONFIG_HOME/shell/common/login/env_vars.sh"
+source "$XDG_CONFIG_HOME/shell/common/login/paths.sh"
 
 
 # StartX

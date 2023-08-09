@@ -30,7 +30,7 @@
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
   # Source custom segments
-  source "$HOME/.config/shell/zsh/plugins/p10k/segments.zsh"
+  source "$XDG_CONFIG_HOME/shell/zsh/plugins/p10k/segments.zsh"
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(

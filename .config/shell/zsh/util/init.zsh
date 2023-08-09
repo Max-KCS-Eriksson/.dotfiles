@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-parent_dir="$HOME/.config/shell/zsh/util"
+parent_dir="$XDG_CONFIG_HOME/shell/zsh/util"
 
 # Source all files in this dir and its subdirectories.
 # All that is needed to add extra functionality is to create a new file, and it will be

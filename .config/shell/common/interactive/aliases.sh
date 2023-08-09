@@ -76,7 +76,3 @@ alias keyus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
 # Manage dotfiles & other bare git repos.
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias rice="/usr/bin/git --git-dir=$HOME/.rice --work-tree=$HOME"
-
-# Scripts.
-alias csb="clear; source $HOME/.config/shell/common/extras/greeter.sh"
-alias rp="python3 $HOME/repos/projects/cli/reading_progress/reading_progress.py"

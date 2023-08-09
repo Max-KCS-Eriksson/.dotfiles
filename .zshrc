@@ -2,7 +2,7 @@
 
 # NOTE: Needs to be set first
 
-source "$HOME/.config/shell/common/interactive/session_env_vars.sh"
+source "$XDG_CONFIG_HOME/shell/common/interactive/session_env_vars.sh"
 
 
 # Set cursor style
@@ -54,14 +54,14 @@ compinit
 
 # LS_COLORS, etc & aliases
 
-source "$HOME/.config/shell/common/interactive/cmd_colors.sh"
-source "$HOME/.config/shell/common/interactive/aliases.sh"
+source "$XDG_CONFIG_HOME/shell/common/interactive/cmd_colors.sh"
+source "$XDG_CONFIG_HOME/shell/common/interactive/aliases.sh"
 
 
 # Functions and utils
 
-source "$HOME/.config/shell/common/functions.sh"
-source "$HOME/.config/shell/zsh/util/init.zsh"
+source "$XDG_CONFIG_HOME/shell/common/functions.sh"
+source "$XDG_CONFIG_HOME/shell/zsh/util/init.zsh"
 
 
 # Runtime management
@@ -72,7 +72,7 @@ eval "$(rtx activate zsh)"
 # Greeter
 
 # NOTE: Source after `cmd_colors.sh`
-# source "$HOME/.config/shell/common/extras/greeter.sh"
+# source "$XDG_CONFIG_HOME/shell/common/extras/greeter.sh"
 
 
 # Right side prompt indentation
@@ -94,4 +94,4 @@ export ZLE_RPROMPT_INDENT=0
 # Plugins
 
 # NOTE: Source last
-source "$HOME/.config/shell/zsh/plugins/plugins.zsh"
+source "$XDG_CONFIG_HOME/shell/zsh/plugins/plugins.zsh"

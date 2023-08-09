@@ -1,5 +1,5 @@
-plugins="$HOME/.local/share/zsh/plugins"
-config="$HOME/.config/shell/zsh/plugins"
+plugins="$XDG_DATA_HOME/zsh/plugins"
+config="$XDG_CONFIG_HOME/shell/zsh/plugins"
 [[ ! -d ${plugins} ]] && mkdir -p ${plugins}
 [[ ! -d ${config} ]] && mkdir -p ${config}
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$HOME/.config/shell/common/extras/colors.sh"
+source "$XDG_CONFIG_HOME/shell/common/extras/colors.sh"
 
 CurrentDir=$PWD
 # DayOfWeek=$(date +%u)
