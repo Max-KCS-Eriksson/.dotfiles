@@ -39,23 +39,30 @@
     colorMoved = default
 
 [alias]
+    ; Status and log
 	s = status
 	ll = log --oneline
 	last = log -1 HEAD --stat
     lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+	fs = !git rev-list --all | xargs git grep -F ; Find string
 
+    ; Diffs
     diff = diff -M
+    ds = diff -M --staged
 	
+    ; Commits and pushing
 	ci = commit
 	p = push
 	poh = push origin HEAD
 
+    ; Branches and checkouts
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	co = checkout
 	cob = checkout -b
 	del = branch -D
 
+    ; Remote
 	rv = remote -v
-	se = !git rev-list --all | xargs git grep -F
 
+    ; List global config
 	gl = config --global -l
