@@ -47,7 +47,7 @@ done
 unset dots target
 
 # Change dir to git root
-alias cdgr='cd $(git rev-parse --show-toplevel)'
+alias cdg='cd $(git rev-parse --show-toplevel)'
 
 # List dir contents
 alias ll="ls -AlFh"
