@@ -8,7 +8,7 @@ function run {
 
 # Wallpaper
 
-feh --bg-fill ~/.config/backgrounds/gruvbox_mojave.jpg &
+feh --no-fehbg --bg-fill ~/.config/backgrounds/gruvbox_mojave.jpg &
 
 # Start sxhkd to replace Qtile native key-bindings
 
