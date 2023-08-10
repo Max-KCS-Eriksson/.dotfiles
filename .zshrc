@@ -24,10 +24,11 @@ fi
 # History
 
 HISTSIZE=1000  # Max num saved internally
-HISTFILE="$HOME/.zhistfile"
 SAVEHIST=2000  # Max num saved to file
-setopt histignoredups  # Don't put duplicate cmd in hist if duplicate of previous cmd.
-setopt histignorespace  # No save to hist if leading space, allows for hiding from hist.
+[[ -d $XDG_STATE_HOME/zsh ]] || mkdir -p "$XDG_STATE_HOME/zsh"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+setopt histignorespace  # Leading space hides cmd from hist.
+unsetopt histignoredups  # Don't put duplicate cmd in hist if duplicate of previous cmd.
 setopt histreduceblanks  # Remove superfluous blanks from cmd's in hist.
 
 
@@ -35,9 +36,9 @@ setopt histreduceblanks  # Remove superfluous blanks from cmd's in hist.
 
 setopt autocd  # If issued cmd can't be exec as normal and is name of dir, cd into it.
 setopt nomatch  # Print error on no match
+setopt autoremoveslash  # Removing of trailing slash for dir from comp on ";" or "&".
 
 unsetopt automenu  # Disable tab cycle completion options
-unsetopt autoremoveslash  # Removing of trailing slash for dir from comp on ";" or "&".
 unsetopt beep  # Beep on error
 unsetopt extendedglob  # "~", "^", and "#" used for glob
 unsetopt notify  # Report background job status immediately
@@ -49,7 +50,7 @@ bindkey -v  # Vi mode
 
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
-compinit
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 
 # LS_COLORS, etc & aliases
