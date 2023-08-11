@@ -75,50 +75,49 @@ dgroups_app_rules = []
 
 @hook.subscribe.client_new
 def assign_app_group(client):
-    d = {}
     # Use `$ xprop` to find the value of `WM_CLASS(STRING)`.
-    # First field is sufficient.
-    # fmt: off
-    d[groups[0].name] = []
-    d[groups[1].name] = []
-    d[groups[2].name] = []
-    d[groups[3].name] = ["Insomnia", "insomnia"]
-    d[groups[4].name] = ["Thunar", "thunar"]
-    d[groups[5].name] = [
-        "Vlc", "vlc",
-        "gl",
-        "Mpv", "mpv",
-        "Gimp", "gimp",
-        "steamwebhelper", "steam", "Steam",
-    ]
-    d[groups[6].name] = []
-    d[groups[7].name] = []
-    d[groups[8].name] = ["Spotify", "spotify"]
-    d[groups[9].name] = [
-        "libreoffice-calc",
-        "Mail", "Thunderbird", "thunderbird"
-        "TelegramDesktop", "telegram-desktop",
-        "Discord", "discord"
-    ]
-    # fmt: on
+    # wm_class is not case sensitive in this case.
+    app_default_group = {
+        # Group 0 - Terminal/Code
+        # Group 1 - Web browsing
+        # Group 2 - Misc
+        # Group 3 - Testing
+        "insomnia": groups[3].name,
+        # Group 4 - File browsing
+        "thunar": groups[4].name,
+        # Group 5 - Breaktime
+        "vlc": groups[5].name,
+        "mpv": groups[5].name,
+        "gimp": groups[5].name,
+        "steam": groups[5].name,
+        "steamwebhelper": groups[5].name,
+        "gl": groups[5].name,
+        # Group 6 - Notes
+        # Group 7 - Dotfiles
+        # Group 8 - Music
+        # Group 9 - Mail/Chat
+        "thunderbird": groups[9].name,
+        "discord": groups[9].name,
+        "libreoffice-calc": groups[9].name,
+        "mail": groups[9].name,
+        "TelegramDesktop": groups[9].name,
+        "telegram-desktop": groups[9].name,
+    }
 
+    # Move client to default group
     wm_class = client.window.get_wm_class()[0]
-
-    # TODO: Assign wm_class as key, with group.name as value
-    # O(1) lookup of wm_class and which group to assign it to rather than iterating over
-    # the dict which is O(n).
-    for i, _ in enumerate(d):
-        if wm_class in list(d.values())[i]:
-            group = list(d.keys())[i]
-            client.togroup(group)
-            client.group.cmd_toscreen(toggle=False)
+    wm_class = wm_class.lower()
+    if wm_class in app_default_group:
+        group = app_default_group[wm_class]
+        client.togroup(group)
+        client.group.cmd_toscreen(toggle=False)
 
 
 # Hooks
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
-    subprocess.call([f"{home}/.config/qtile/scripts/autostart.sh"])
+    HOME = os.path.expanduser("~")
+    subprocess.call([f"{HOME}/.config/qtile/scripts/autostart.sh"])
 
 
 @hook.subscribe.startup
