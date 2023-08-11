@@ -64,5 +64,8 @@
     ; Remote
 	rv = remote -v
 
+    ; List tracked files
+    files = ls-tree -r main --name-only
+
     ; List global config
 	gl = config --global -l
