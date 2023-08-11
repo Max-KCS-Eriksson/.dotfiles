@@ -27,7 +27,7 @@ def window_to_previous_screen(qtile, switch_group=False, switch_screen=False):
     if i != 0:
         group = qtile.screens[i - 1].group.name
         qtile.current_window.togroup(group, switch_group=switch_group)
-        if switch_screen == True:
+        if switch_screen:
             qtile.cmd_to_screen(i - 1)
 
 
@@ -36,7 +36,7 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
     if i + 1 != len(qtile.screens):
         group = qtile.screens[i + 1].group.name
         qtile.current_window.togroup(group, switch_group=switch_group)
-        if switch_screen == True:
+        if switch_screen:
             qtile.cmd_to_screen(i + 1)
 
 
