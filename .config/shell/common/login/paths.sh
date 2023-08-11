@@ -1,2 +1,1 @@
-# Add scripts folder
-PATH=$PATH:"$HOME/scripts"
+PATH=$PATH:"$HOME/.local/bin"
