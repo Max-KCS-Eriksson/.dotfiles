@@ -68,9 +68,9 @@ def init_groups():
         ),
         Group(
             name="8",
-            # name = "CHAT"
+            # name = "CONF"
             layout="monadtall",
-            label="",  #   
+            label="",  #     
             layout_opts=None,  # Options to pass to a layout.
             screen_affinity=None,  # Preference to start on specific screen.
             spawn=None,
@@ -88,7 +88,7 @@ def init_groups():
             name="0",
             # name = "MAIL",
             layout="monadtall",
-            label="",  #     @
+            label="",  #     @    
             layout_opts=None,  # Options to pass to a layout.
             screen_affinity=None,  # Preference to start on specific screen.
             spawn=None,

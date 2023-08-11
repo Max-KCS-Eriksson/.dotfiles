@@ -92,13 +92,21 @@ def assign_app_group(client):
         "steamwebhelper", "steam", "Steam",
     ]
     d[groups[6].name] = []
-    d[groups[7].name] = ["TelegramDesktop", "telegram-desktop", "Discord", "discord"]
+    d[groups[7].name] = []
     d[groups[8].name] = ["Spotify", "spotify"]
-    d[groups[9].name] = ["libreoffice-calc", "Mail", "Thunderbird", "thunderbird"]
+    d[groups[9].name] = [
+        "libreoffice-calc",
+        "Mail", "Thunderbird", "thunderbird"
+        "TelegramDesktop", "telegram-desktop",
+        "Discord", "discord"
+    ]
     # fmt: on
 
     wm_class = client.window.get_wm_class()[0]
 
+    # TODO: Assign wm_class as key, with group.name as value
+    # O(1) lookup of wm_class and which group to assign it to rather than iterating over
+    # the dict which is O(n).
     for i, _ in enumerate(d):
         if wm_class in list(d.values())[i]:
             group = list(d.keys())[i]
