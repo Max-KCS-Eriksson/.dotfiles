@@ -6,8 +6,10 @@ from libqtile.widget import base
 
 class MyDfIcon(base.ThreadPoolText):
     def __init__(self) -> None:
+        raise NotImplementedError
         super().__init__()
 
     def poll(self):
-        # df_percent = psutil.
+        raise NotImplementedError
+        df_percent = psutil.disk_usage("/").percent
         return super().poll()

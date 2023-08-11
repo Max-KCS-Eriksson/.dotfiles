@@ -240,7 +240,7 @@ backlight = widget.Backlight(
     backlight_name="amdgpu_bl0",
     brightness_file="/sys/class/backlight/amdgpu_bl0/brightness",
     max_brightness_file="/sys/class/backlight/amdgpu_bl0/max_brightness",
-    format="{percent:.0%} %",  # TODO: Fix This
+    format="{percent:.0%} %",
     **text_defaults,
 )
 
