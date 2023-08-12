@@ -75,33 +75,33 @@ dgroups_app_rules = []
 
 @hook.subscribe.client_new
 def assign_app_group(client):
+    HOME = "home"
+    WEB = "web"
+    MISC = "misc"
+    LAB = "lab"
+    FILE = "file"
+    RELAX = "relax"
+    NOTES = "notes"
+    CONF = "conf"
+    MUSIC = "music"
+    MAIL = "mail"
     # Use `$ xprop` to find the value of `WM_CLASS(STRING)`.
     # wm_class is not case sensitive in this case.
     app_default_group = {
-        # Group 0 - Terminal/Code
-        # Group 1 - Web browsing
-        # Group 2 - Misc
-        # Group 3 - Testing
-        "insomnia": groups[3].name,
-        # Group 4 - File browsing
-        "thunar": groups[4].name,
-        # Group 5 - Breaktime
-        "vlc": groups[5].name,
-        "mpv": groups[5].name,
-        "gimp": groups[5].name,
-        "steam": groups[5].name,
-        "steamwebhelper": groups[5].name,
-        "gl": groups[5].name,
-        # Group 6 - Notes
-        # Group 7 - Dotfiles
-        # Group 8 - Music
-        # Group 9 - Mail/Chat
-        "thunderbird": groups[9].name,
-        "discord": groups[9].name,
-        "libreoffice-calc": groups[9].name,
-        "mail": groups[9].name,
-        "TelegramDesktop": groups[9].name,
-        "telegram-desktop": groups[9].name,
+        "discord": MAIL,
+        "gimp": RELAX,
+        "gl": RELAX,
+        "insomnia": LAB,
+        "libreoffice-calc": MAIL,
+        "mail": MAIL,
+        "mpv": RELAX,
+        "steam": RELAX,
+        "steamwebhelper": RELAX,
+        "telegram-desktop": MAIL,
+        "telegramDesktop": MAIL,
+        "thunar": FILE,
+        "thunderbird": MAIL,
+        "vlc": RELAX,
     }
 
     # Move client to default group

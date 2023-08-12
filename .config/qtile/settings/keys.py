@@ -40,10 +40,9 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
             qtile.cmd_to_screen(i + 1)
 
 
-# fmt:off
-
 def init_keybindings(groups):
     """Most keybindings are in sxhkd file - except these."""
+    # fmt:off
     keys = [
         # Super keys
         Key([mod, "shift"], "f", lazy.window.toggle_fullscreen()),
@@ -191,26 +190,34 @@ def init_keybindings(groups):
             desc='Keyboard focus to monitor 3'
         ),
     ]
-
+    # fmt:on
 
     # Add keybinding for switching to specific workspaces.
-    for i, group in enumerate(groups, start=1):
+    first_numrow_key = 1
+    for i, group in enumerate(groups, start=first_numrow_key):
+        last_numrow_key = 0
+        if i == 10:
+            i = last_numrow_key
+        numkey = str(i)
+
         keys.extend(
+            # fmt:off
             [
-                # CHANGE WORKSPACES
-                Key([mod], group.name, lazy.group[group.name].toscreen()),
+                # Change workspaces
+                Key([mod], numkey, lazy.group[group.name].toscreen()),
 
-                # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-                # Key([mod, "shift"], key, lazy.window.togroup(group.name)),
+                # Move window to selected workspace 1-10 and stay on workspace
+                # Key([mod, "shift"], numkey, lazy.window.togroup(group.name)),
 
-                # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED WINDOW TO WORKSPACE
+                # Move window to selected workspace 1-10 and follow moved window to workspace
                 Key(
                     [mod, "shift"],
-                    group.name,
+                    numkey,
                     lazy.window.togroup(group.name),
                     lazy.group[group.name].toscreen(),
                 ),
             ]
+            # fmt:on
         )
 
     return keys
