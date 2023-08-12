@@ -1,9 +1,16 @@
+# Dotfiles ignore patterns
+
 # P10k
 p10k.zsh
 
 # Webpage monitor
 webpage_monitor_settings.py
 comparison_*.html
+
+# General ignore patterns
+
+*.log
+*.bak
 
 # Python
 __pycache__/
