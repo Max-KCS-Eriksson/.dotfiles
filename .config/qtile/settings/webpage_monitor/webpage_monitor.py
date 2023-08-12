@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 from .. import color_theme
-from .webpage_monitor_settings import URL_TO_MONITOR
+from .webpage_monitor_settings import URL_TO_MONITOR, LOG_PATH
 
 BASE_DIR = Path(__file__).resolve().parent
 HOME_DIR = Path(os.path.expanduser("~"))
@@ -26,17 +26,15 @@ class Scraper:
         options = webdriver.FirefoxOptions()
         options.headless = True
 
-        self.driver = webdriver.Firefox(options=options)
-        # self.driver = webdriver.PhantomJS()  # Requires installation, but is faster.
+        service = webdriver.FirefoxService(log_path=LOG_PATH)
+
+        self.driver = webdriver.Firefox(options=options, service=service)
         self.driver.maximize_window()
 
     def scrape(self, url):
         self.driver.get(url)
         source = BeautifulSoup(self.driver.page_source)
         self.driver.quit()
-
-        # Clean up home dir
-        self._remove_logfile()
 
         return source
 
@@ -64,12 +62,6 @@ class Scraper:
             return f"<span foreground='{OK}'>No changes</span>"
         else:
             return f"<span foreground='{CRITICAL}' font='JetBrainsMono Nerd Font bold'>CHANGE DETECTED</span>"
-
-    def _remove_logfile(self):
-        """Remove logfile created in home dir."""
-        logfile = HOME_DIR / "geckodriver.log"
-        if os.path.exists(logfile):
-            os.remove(logfile)
 
 
 def check_once():
