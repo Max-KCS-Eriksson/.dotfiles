@@ -9,7 +9,7 @@
 
 [core]
 	editor = nvim
-	excludesfile = ignore
+	excludesfile = ~/.config/git/ignore
     pager = delta
 
 [interactive]
