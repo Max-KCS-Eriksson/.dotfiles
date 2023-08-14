@@ -78,8 +78,12 @@ eval "$(rtx activate zsh)"
 
 # Greeter
 
-# NOTE: Source after `cmd_colors.sh`
-# source "$XDG_CONFIG_HOME/shell/common/extras/greeter.sh"
+# HACK: Show greeter only once after login
+if [[  $( cat "$XDG_STATE_HOME/zsh/.show_greeter") == 1 ]]; then
+    # NOTE: Source after `cmd_colors.sh`
+    source "$XDG_CONFIG_HOME/shell/common/extras/greeter.sh"
+    echo 0 >"$XDG_STATE_HOME/zsh/.show_greeter"
+fi
 
 
 # Right side prompt indentation

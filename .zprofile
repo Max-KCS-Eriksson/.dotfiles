@@ -9,6 +9,13 @@ source "$HOME/.config/shell/common/login/env_vars.sh"
 source "$XDG_CONFIG_HOME/shell/common/login/paths.sh"
 
 
+# Show greeter on next interactive shell
+
+# HACK: File is read in "$HOME/.zshrc"
+echo 1 >"$XDG_STATE_HOME/zsh/.show_greeter"
+
+
+
 # StartX
 
 [[ $(ps -e | grep startx) == '' ]] && startx
