@@ -1,3 +1,9 @@
+# shellcheck disable=SC2148,2296
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
 # Session specific Environmental variables
 
 # NOTE: Needs to be set first
@@ -23,8 +29,8 @@ fi
 
 # History
 
-HISTSIZE=1000  # Max num saved internally
-SAVEHIST=2000  # Max num saved to file
+export HISTSIZE=1000  # Max num saved internally
+export SAVEHIST=2000  # Max num saved to file
 [[ -d $XDG_STATE_HOME/zsh ]] || mkdir -p "$XDG_STATE_HOME/zsh"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 setopt histignorespace  # Leading space hides cmd from hist.
@@ -50,7 +56,7 @@ bindkey -v  # Vi mode
 
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 
 
 # LS_COLORS, etc & aliases
