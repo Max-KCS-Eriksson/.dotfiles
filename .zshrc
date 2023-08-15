@@ -27,6 +27,38 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# Set colors in TTY
+
+if [ "$TERM" = "linux" ]; then
+    # Black
+    echo -en "\e]P0282828"
+    echo -en "\e]P8928374"
+    # Red
+    echo -en "\e]P1CC241D"
+    echo -en "\e]P9FB4934"
+    # Green
+    echo -en "\e]P2689D6A"
+    echo -en "\e]PA8EC07C"
+    # Yellow
+    echo -en "\e]P3D79921"
+    echo -en "\e]PBFABD2F"
+    # Blue
+    echo -en "\e]P4458588"
+    echo -en "\e]PC83A598"
+    # Magenta
+    echo -en "\e]P5B16286"
+    echo -en "\e]PDD3869B"
+    # Cyan
+    echo -en "\e]P698971A"
+    echo -en "\e]PEB8BB26"
+    # White
+    echo -en "\e]P7A89984"
+    echo -en "\e]PFEBDBB2"
+    # For background artifacting
+    clear
+fi
+
+
 # History
 
 export HISTSIZE=1000  # Max num saved internally
