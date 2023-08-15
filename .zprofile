@@ -18,4 +18,6 @@ echo 1 >"$XDG_STATE_HOME/zsh/.show_greeter"
 
 # StartX
 
-[[ $(ps -e | grep startx) == '' ]] && startx
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    startx
+fi
