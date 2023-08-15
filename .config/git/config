@@ -48,6 +48,7 @@
 
     ; Diffs
     diff = diff -M
+    d = diff -M
     ds = diff -M --staged
 	
     ; Commits and pushing
