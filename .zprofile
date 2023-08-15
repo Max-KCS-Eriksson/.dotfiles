@@ -1,8 +1,3 @@
-# Get aliases and functions etc.
-
-[ -f "$HOME"/.zshrc ] && . "$HOME"/.zshrc
-
-
 # Environmental variables
 
 source "$HOME/.config/shell/common/login/env_vars.sh"
