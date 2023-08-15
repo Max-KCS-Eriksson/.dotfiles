@@ -19,6 +19,6 @@ fi
 echo ''
 echo -e "${BWhite}Currently in ${BBlue}${CurrentDir}${Color_Off}"
 echo -e "${BWhite}Directory contents: ${Color_Off}"
-ls -lFh
+ls -lFh --color=always
 
 unset CurrentDir
