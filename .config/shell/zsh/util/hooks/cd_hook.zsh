@@ -5,7 +5,7 @@ _cd_hook() {
         # List dir content differently depending on number of files/dirs
         if [[ "$(ls -1 | wc -l)" -le 16 ]]; then
            ls -AlFh
-        else
+        elif [[ "$(ls -1 | wc -l)" -le 100 ]]; then
             ls -AF
         fi
 

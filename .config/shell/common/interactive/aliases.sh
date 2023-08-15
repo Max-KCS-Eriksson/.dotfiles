@@ -63,7 +63,7 @@ alias v="nvim"
 alias v.="nvim ."
 
 # Search, filter, and copy output
-alias gr="grep"
+alias gr="grep -i"
 alias fzp="fzf --preview 'bat --color=always {}'"
 alias xcc="xclip -selection clipboard"
 
