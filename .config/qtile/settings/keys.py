@@ -57,7 +57,7 @@ def init_keybindings(groups):
         Key([mod, "control"], "r", lazy.reload_config()),
 
         # Qtile layout keys
-        Key([mod], "n", lazy.layout.normalize()),
+        Key([mod, "shift"], "n", lazy.layout.normalize()),
 
         # Change focus
         Key([mod], "Up", lazy.layout.up()),
