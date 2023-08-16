@@ -7,7 +7,7 @@
 
 # Neorg
 super + n
-    xfce4-terminal --command 'nvim -c "Neorg workspace todo"' --title=todo
+    xfce4-terminal --command "$HOME/.local/bin/neorg" --title=todo
 
 # Terminal
 super + Return
