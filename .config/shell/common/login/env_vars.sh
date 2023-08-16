@@ -18,3 +18,6 @@ export XCURSOR_PATH=/usr/share/icons:$XDG_DATA_HOME/icons
 # Bat
 export BAT_THEME="gruvbox-dark"
 export BAT_PAGER="/bin/less"
+
+# Neorg
+export NEORG_HOME="$HOME/Documents/neorg"
