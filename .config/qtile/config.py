@@ -60,7 +60,7 @@ keys = init_keybindings(groups=groups)
 # Layouts
 layouts = init_layouts(colors=colors)
 floating_types = init_floating_types()
-floating_layout = init_floating_layout()
+floating_layout = init_floating_layout(colors=colors)
 
 # Screens
 screens = init_screens()

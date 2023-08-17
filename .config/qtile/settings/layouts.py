@@ -27,7 +27,7 @@ def init_floating_types():
     return ["notification", "toolbar", "splash", "dialog"]
 
 
-def init_floating_layout():
+def init_floating_layout(colors):
     float_rules = [
         # Run the utility of `xprop` to see the wm class and title of an X client.
         *layout.Floating.default_float_rules,
@@ -51,10 +51,9 @@ def init_floating_layout():
         Match(wm_class="archlinux-logout"),
         Match(wm_class="matplotlib"),
         Match(title="Create Snapshot", wm_class="Timeshift-gtk"),
+        Match(title="Neorg-Note"),
     ]
 
     return layout.Floating(
-        float_rules=float_rules,
-        fullscreen_border_width=0,
-        border_width=0,
+        float_rules=float_rules, fullscreen_border_width=0, **layout_defaults(colors)
     )
