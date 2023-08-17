@@ -5,7 +5,7 @@ super + t
     xfce4-terminal --command "$HOME/.local/bin/neorg" --title=Neorg
 
 super + n
-    xfce4-terminal --command "$HOME/.local/bin/neorg --note" --title=Neorg-Note
+    xfce4-terminal --command "$HOME/.local/bin/neorg --note" --title=Neorg --role=FloatNote
 
 # Terminal
 super + Return

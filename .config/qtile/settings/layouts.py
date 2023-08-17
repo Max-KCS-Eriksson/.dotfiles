@@ -51,7 +51,12 @@ def init_floating_layout(colors: dict):
         Match(wm_class="archlinux-logout"),
         Match(wm_class="matplotlib"),
         Match(title="Create Snapshot", wm_class="Timeshift-gtk"),
-        Match(title="Neorg-Note"),
+        # Scripts
+        # NOTE: The `Match` object will return true (a match) on substrings!
+        # `Match(title="Neorg")` will match with ANY window with "Neorg" in its title,
+        # for example: "NeorgNote", "NoteNeorg", etc.
+        # Therefor the combined attributes need to be unique for a unique match.
+        Match(title="Neorg", role="FloatNote"),
     ]
 
     return layout.Floating(
