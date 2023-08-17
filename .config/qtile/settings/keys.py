@@ -53,35 +53,69 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
 
 def init_keybindings(groups):
     """Qtile specific keybindings"""
-    # fmt:off
-    keys = [
-        # Super + key
-        Key([META, SHIFT], "f", lazy.window.toggle_fullscreen()),
-        Key([META], ESC, lazy.window.kill()),
+    # Keybinds grouped in lists, and ordered by used modifiers
+    # Example:
+    # purpose_of_keys = [
+    #   # Meta + key
+    #   # Meta + Shift + key
+    #   # Meta + Ctrl + key
+    #   # Meta + Alt + key
+    # ]
 
-        # Super + Shift + key
-        Key([META, SHIFT], "q", lazy.window.kill()),
+    qtile_keys = [
+        # Meta + key
+        # Meta + Shift + key
         Key([META, SHIFT], "r", lazy.restart()),
-        Key([META, SHIFT], SPACE, lazy.next_layout()),
-
-        # Super + Ctrl + key
+        # Meta + Ctrl + key
         Key([META, CTRL], "r", lazy.reload_config()),
+        # Meta + Alt + key
+    ]
 
-        # Qtile layout keys
+    window_keys = [
+        # Meta + key
+        Key([META], ESC, lazy.window.kill()),
+        # Meta + Shift + key
+        Key([META, SHIFT], "q", lazy.window.kill()),
+        Key([META, SHIFT], "f", lazy.window.toggle_fullscreen()),
+        Key(  # Move window between screens
+            [META, SHIFT],
+            RIGHT,
+            lazy.function(window_to_next_screen, switch_screen=True),
+        ),
+        Key(  # Move window between screens
+            [META, SHIFT],
+            LEFT,
+            lazy.function(window_to_previous_screen, switch_screen=True),
+        ),
+        # Meta + Ctrl + key
+        # Meta + Alt + key
+        Key([META, ALT], "f", lazy.window.toggle_floating()),
+    ]
+
+    layout_keys = [
+        # Meta + key
+        Key([META], UP, lazy.layout.up()),  # Change focus
+        Key([META], DOWN, lazy.layout.down()),  # Change focus
+        Key([META], LEFT, lazy.layout.left()),  # Change focus
+        Key([META], RIGHT, lazy.layout.right()),  # Change focus
+        Key([META], "k", lazy.layout.up()),  # Change focus
+        Key([META], "j", lazy.layout.down()),  # Change focus
+        Key([META], "h", lazy.layout.left()),  # Change focus
+        Key([META], "l", lazy.layout.right()),  # Change focus
+        # Meta + Shift + key
+        Key([META, SHIFT], SPACE, lazy.next_layout()),  # Cycle layouts
         Key([META, SHIFT], "n", lazy.layout.normalize()),
-
-        # Change focus
-        Key([META], UP, lazy.layout.up()),
-        Key([META], DOWN, lazy.layout.down()),
-        Key([META], LEFT, lazy.layout.left()),
-        Key([META], RIGHT, lazy.layout.right()),
-        Key([META], "k", lazy.layout.up()),
-        Key([META], "j", lazy.layout.down()),
-        Key([META], "h", lazy.layout.left()),
-        Key([META], "l", lazy.layout.right()),
-
-        # Resize up, down, left, right
-        Key(
+        Key([META, SHIFT], "t", lazy.layout.flip()),  # Mirror layout
+        Key([META, SHIFT], "k", lazy.layout.shuffle_up()),  # Move windows in BSP
+        Key([META, SHIFT], "j", lazy.layout.shuffle_down()),  # Move windows in BSP
+        Key([META, SHIFT], "h", lazy.layout.shuffle_left()),  # Move windows in BSP
+        Key([META, SHIFT], "l", lazy.layout.shuffle_right()),  # Move windows in BSP
+        Key([META, SHIFT], UP, lazy.layout.shuffle_up()),  # Move windows in Monad*
+        Key([META, SHIFT], DOWN, lazy.layout.shuffle_down()),  # Move windows in Monad*
+        Key([META, SHIFT], LEFT, lazy.layout.swap_left()),  # Move windows in Monad*
+        Key([META, SHIFT], RIGHT, lazy.layout.swap_right()),  # Move windows in Monad*
+        # Meta + Ctrl + key
+        Key(  # Resize window
             [META, CTRL],
             "l",
             lazy.layout.grow_right(),
@@ -89,7 +123,7 @@ def init_keybindings(groups):
             lazy.layout.increase_ratio(),
             lazy.layout.delete(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             RIGHT,
             lazy.layout.grow_right(),
@@ -97,7 +131,7 @@ def init_keybindings(groups):
             lazy.layout.increase_ratio(),
             lazy.layout.delete(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             "h",
             lazy.layout.grow_left(),
@@ -105,7 +139,7 @@ def init_keybindings(groups):
             lazy.layout.decrease_ratio(),
             lazy.layout.add(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             LEFT,
             lazy.layout.grow_left(),
@@ -113,122 +147,100 @@ def init_keybindings(groups):
             lazy.layout.decrease_ratio(),
             lazy.layout.add(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             "k",
             lazy.layout.grow_up(),
             lazy.layout.grow(),
             lazy.layout.decrease_nmaster(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             UP,
             lazy.layout.grow_up(),
             lazy.layout.grow(),
             lazy.layout.decrease_nmaster(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             "j",
             lazy.layout.grow_down(),
             lazy.layout.shrink(),
             lazy.layout.increase_nmaster(),
         ),
-        Key(
+        Key(  # Resize window
             [META, CTRL],
             DOWN,
             lazy.layout.grow_down(),
             lazy.layout.shrink(),
             lazy.layout.increase_nmaster(),
         ),
-
-        # Flip layout for MonadTall/MonadWide
-        Key([META, SHIFT], "t", lazy.layout.flip()),
-
-        # Flip layout for BSP
-        Key([META, ALT], "k", lazy.layout.flip_up()),
-        Key([META, ALT], "j", lazy.layout.flip_down()),
-        Key([META, ALT], "l", lazy.layout.flip_right()),
-        Key([META, ALT], "h", lazy.layout.flip_left()),
-
-        # Move windows up or down BSP layout
-        Key([META, SHIFT], "k", lazy.layout.shuffle_up()),
-        Key([META, SHIFT], "j", lazy.layout.shuffle_down()),
-        Key([META, SHIFT], "h", lazy.layout.shuffle_left()),
-        Key([META, SHIFT], "l", lazy.layout.shuffle_right()),
-
-        # Move windows up or down MonadTall/MonadWide layout
-        Key([META, SHIFT], UP, lazy.layout.shuffle_up()),
-        Key([META, SHIFT], DOWN, lazy.layout.shuffle_down()),
-        Key([META, SHIFT], LEFT, lazy.layout.swap_left()),
-        Key([META, SHIFT], RIGHT, lazy.layout.swap_right()),
-
-        # Toggle floating layout
-        Key([META, ALT], "f", lazy.window.toggle_floating()),
-
-        # Tab to switch workspace.
-        Key([META], TAB, lazy.screen.next_group()),
-        Key([META, SHIFT], TAB, lazy.screen.prev_group()),
-        Key([ALT], TAB, lazy.screen.next_group()),
-        Key([ALT, SHIFT], TAB, lazy.screen.prev_group()),
-
-        # Move window between screens.
-        Key(
-            [META, SHIFT],
-            RIGHT,
-            lazy.function(window_to_next_screen, switch_screen=True),
-        ),
-        Key(
-            [META, SHIFT],
-            LEFT,
-            lazy.function(window_to_previous_screen, switch_screen=True),
-        ),
-
-        # Change focus between screens.
-        Key([META], HOME, lazy.prev_screen(), desc='Next monitor'),
-        Key([META], END, lazy.next_screen(), desc='Next monitor'),
-
-        Key([META, CTRL], "1",
-            lazy.to_screen(2),  # Left screen
-            desc='Keyboard focus to monitor 1'
-        ),
-        Key([META, CTRL], "2",
-            lazy.to_screen(0),  # Middle screen
-            desc='Keyboard focus to monitor 2'
-        ),
-        Key([META, CTRL], "3",
-            lazy.to_screen(1),  # Right screen
-            desc='Keyboard focus to monitor 3'
-        ),
+        # Meta + Alt + key
+        Key([META, ALT], "k", lazy.layout.flip_up()),  # Flip layout for BSP
+        Key([META, ALT], "j", lazy.layout.flip_down()),  # Flip layout for BSP
+        Key([META, ALT], "l", lazy.layout.flip_right()),  # Flip layout for BSP
+        Key([META, ALT], "h", lazy.layout.flip_left()),  # Flip layout for BSP
     ]
-    # fmt:on
 
-    # Add keybinding for switching to specific workspaces.
-    first_numrow_key = 1
-    for i, group in enumerate(groups, start=first_numrow_key):
-        last_numrow_key = 0
+    group_keys = [
+        # Meta + key
+        Key([META], TAB, lazy.screen.next_group()),
+        # Tab to switch workspace.
+        Key([META, SHIFT], TAB, lazy.screen.prev_group()),
+        # Meta + Shift + key
+        # Meta + Ctrl + key
+        # Meta + Alt + key
+    ]
+
+    screen_focus_keys = [
+        # Meta + key
+        Key([META], HOME, lazy.prev_screen(), desc="Focus prev monitor"),
+        Key([META], END, lazy.next_screen(), desc="Focus next monitor"),
+        # Meta + Shift + key
+        # Meta + Ctrl + key
+        Key(
+            [META, CTRL],
+            "1",
+            lazy.to_screen(2),  # NOTE: Setup specific
+            desc="Focus monitor 1",
+        ),
+        Key(
+            [META, CTRL],
+            "2",
+            lazy.to_screen(0),  # NOTE: Setup specific
+            desc="Focus monitor 2",
+        ),
+        Key(
+            [META, CTRL],
+            "3",
+            lazy.to_screen(1),  # NOTE: Setup specific
+            desc="Focus monitor 3",
+        ),
+        # Meta + Alt + key
+    ]
+
+    # Group specific keybinds
+    FIRST_NUMROW_KEY = 1
+    LAST_NUMROW_KEY = 0
+    for i, group in enumerate(groups, start=FIRST_NUMROW_KEY):
         if i == 10:
-            i = last_numrow_key
+            i = LAST_NUMROW_KEY
         numkey = str(i)
 
-        keys.extend(
-            # fmt:off
-            [
-                # Change workspaces
-                Key([META], numkey, lazy.group[group.name].toscreen()),
+        _group_keys = [
+            # Change workspaces
+            Key([META], numkey, lazy.group[group.name].toscreen()),
+            # Move window to selected workspace 1-10 and stay on workspace
+            Key([META, ALT], numkey, lazy.window.togroup(group.name)),
+            # Move window to selected workspace 1-10 and follow to workspace
+            Key(
+                [META, SHIFT],
+                numkey,
+                lazy.window.togroup(group.name),
+                lazy.group[group.name].toscreen(),
+            ),
+        ]
 
-                # Move window to selected workspace 1-10 and stay on workspace
-                # Key([META, SHIFT], numkey, lazy.window.togroup(group.name)),
+        group_keys.extend(_group_keys)
 
-                # Move window to selected workspace 1-10 and follow moved window to workspace
-                Key(
-                    [META, SHIFT],
-                    numkey,
-                    lazy.window.togroup(group.name),
-                    lazy.group[group.name].toscreen(),
-                ),
-            ]
-            # fmt:on
-        )
-
-    return keys
+    return qtile_keys + window_keys + layout_keys + group_keys + screen_focus_keys
