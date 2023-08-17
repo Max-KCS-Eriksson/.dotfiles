@@ -68,11 +68,40 @@ screens = init_screens()
 # Mouse
 mouse = init_mouse_settings()
 
-# Assign apps to groups
-dgroups_key_binder = None
-dgroups_app_rules = []
+
+# Client default group assignment helper
+def _send_client_to_group(client, group):
+    client.togroup(group)
+    client.group.cmd_toscreen(toggle=False)
 
 
+def _assign_client_to_default_group(client, **kwargs):
+    wm_class_default_group = kwargs["wm_class_default_group"]
+    wm_name_default_group = kwargs["wm_name_default_group"]
+    excluded_wm_roles = kwargs["excluded_wm_roles"]
+
+    # Find out if client has a default group specified or it is to be excluded.
+    wm_class = client.get_wm_class()[0].lower()
+    if wm_class in wm_class_default_group:
+        group = wm_class_default_group[wm_class]
+        # HACK: Telegram and Steam get caught in below check for wm_role, so send them
+        # to the correct group immediately.
+        if wm_class in {"telegram-desktop", "steamwebhelper"}:
+            _send_client_to_group(client, group)
+
+    wm_name = client.name.lower()
+    if wm_name in wm_name_default_group:
+        group = wm_name_default_group[wm_name]
+
+    wm_role = client.get_wm_role().lower()
+    if wm_role in excluded_wm_roles:
+        return
+
+    # Move client to default group.
+    _send_client_to_group(client, group)
+
+
+# Hooks
 @hook.subscribe.client_new
 def assign_app_group(client):
     HOME = "home"
@@ -85,11 +114,13 @@ def assign_app_group(client):
     CONF = "conf"
     MUSIC = "music"
     MAIL = "mail"
-    # Use `$ xprop` to find the value of `WM_CLASS(STRING)`.
-    # wm_class is not case sensitive in this case.
-    app_default_group = {
+
+    # Specify the default group of wm_classes and wm_names.
+    # NOTE: Keys MUST be in all lower case.
+    wm_class_default_group = {
         "discord": MAIL,
         "gimp": RELAX,
+        "gimp-2.10": RELAX,
         "gl": RELAX,
         "insomnia": LAB,
         "libreoffice-calc": MAIL,
@@ -98,19 +129,34 @@ def assign_app_group(client):
         "steam": RELAX,
         "steamwebhelper": RELAX,
         "telegram-desktop": MAIL,
-        "telegramDesktop": MAIL,
+        "telegramdesktop": MAIL,
         "thunar": FILE,
         "thunderbird": MAIL,
         "vlc": RELAX,
     }
+    wm_name_default_group = {
+        "neorg": NOTES,
+        "steam": RELAX,
+        "telegram (1)": MAIL,
+    }
 
-    # Move client to default group
-    wm_class = client.window.get_wm_class()[0]
-    wm_class = wm_class.lower()
-    if wm_class in app_default_group:
-        group = app_default_group[wm_class]
-        client.togroup(group)
-        client.group.cmd_toscreen(toggle=False)
+    # Specify the wm_roles to exclude from above a specification.
+    # Differentiate between windows of same class or with same title but with different
+    # roles, i.e. with different desired behaviour, like floating.
+    # NOTE: Values MUST be in all lower case.
+    excluded_wm_roles = {
+        "float",
+        "floatnote",
+        "floatterm",
+        "floatwin",
+    }
+
+    group_assignment_rules = {
+        "wm_class_default_group": wm_class_default_group,
+        "wm_name_default_group": wm_name_default_group,
+        "excluded_wm_roles": excluded_wm_roles,
+    }
+    _assign_client_to_default_group(client, **group_assignment_rules)
 
 
 # Hooks
