@@ -2,16 +2,16 @@ from libqtile import layout
 from libqtile.config import Match
 
 
-def layout_defaults(colors):
-    return dict(
-        margin=5,
-        border_width=3,
-        border_focus=colors["primary"][1],
-        border_normal=colors["bg"],
-    )
+def layout_defaults(colors: dict, **kwargs: dict):
+    return {
+        "margin": kwargs.get("margin", 5),
+        "border_width": kwargs.get("border_width", 3),
+        "border_focus": kwargs.get("border_focus", colors["primary"][1]),
+        "border_normal": kwargs.get("border_normal", colors["bg"]),
+    }
 
 
-def init_layouts(colors):
+def init_layouts(colors: dict):
     return [
         layout.MonadTall(**layout_defaults(colors)),
         layout.MonadWide(ratio=0.75, **layout_defaults(colors)),
@@ -27,7 +27,7 @@ def init_floating_types():
     return ["notification", "toolbar", "splash", "dialog"]
 
 
-def init_floating_layout(colors):
+def init_floating_layout(colors: dict):
     float_rules = [
         # Run the utility of `xprop` to see the wm class and title of an X client.
         *layout.Floating.default_float_rules,
@@ -55,5 +55,12 @@ def init_floating_layout(colors):
     ]
 
     return layout.Floating(
-        float_rules=float_rules, fullscreen_border_width=0, **layout_defaults(colors)
+        float_rules=float_rules,
+        fullscreen_border_width=0,
+        **layout_defaults(
+            colors,
+            **{
+                "border_normal": colors["dim"][0],
+            }
+        )
     )
