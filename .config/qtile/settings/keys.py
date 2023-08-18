@@ -102,7 +102,9 @@ def init_keybindings(groups):
         Key([META], "j", lazy.layout.down()),  # Change focus
         Key([META], "h", lazy.layout.left()),  # Change focus
         Key([META], "l", lazy.layout.right()),  # Change focus
+        Key([META], TAB, lazy.group.next_window()),  # Cycle windows
         # Meta + Shift + key
+        Key([META, SHIFT], TAB, lazy.group.prev_window()),  # Cycle windows back
         Key([META, SHIFT], SPACE, lazy.next_layout()),  # Cycle layouts
         Key([META, SHIFT], "n", lazy.layout.normalize()),
         Key([META, SHIFT], "t", lazy.layout.flip()),  # Mirror layout
@@ -184,9 +186,6 @@ def init_keybindings(groups):
 
     group_keys = [
         # Meta + key
-        Key([META], TAB, lazy.screen.next_group()),
-        # Tab to switch workspace.
-        Key([META, SHIFT], TAB, lazy.screen.prev_group()),
         # Meta + Shift + key
         # Meta + Ctrl + key
         # Meta + Alt + key
