@@ -16,7 +16,7 @@ alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 
 # Ignore files in output
-alias tree="tree --dirsfirst -F -I '.git/|.gitignore|*_env/|.venv/|__pycache__/|*.egg-info/|build/'"
+alias tree="tree --filesfirst -F -I '.git/|.gitignore|*_env/|.venv/|__pycache__/|*.egg-info/|build/'"
 
 # Clean home
 alias wget=wget --hsts-file='$XDG_DATA_HOME/wget-hsts'
@@ -40,9 +40,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 dots=".."
 target="cd .."
 for ((i = 0; i < 10; i++)); do
-	alias "$dots=$target"
-	dots+="."
-	target+="/.."
+    alias "$dots=$target"
+    dots+="."
+    target+="/.."
 done
 unset dots target
 
@@ -73,18 +73,18 @@ export _thisTerm
 
 _termCmd=''
 if [[ "$_thisTerm" == "xfce4-terminal" ]]; then
-	_termCmd='xfce4-terminal --working-directory='
+    _termCmd='xfce4-terminal --working-directory='
 elif [[ "$_thisTerm" == "wezterm-gui" ]]; then
-	_termCmd='wezterm start --cwd '
+    _termCmd='wezterm start --cwd '
 fi
 
 if [[ $_termCmd != '' ]]; then
-	alias another="$_termCmd"'$PWD'
+    alias another="$_termCmd"'$PWD'
 
-	# HACK: Used for spawning another terminal from Neovim
-	export _termCmd
+    # HACK: Used for spawning another terminal from Neovim
+    export _termCmd
 else
-	unset _termCmd
+    unset _termCmd
 fi
 
 # Input settings
