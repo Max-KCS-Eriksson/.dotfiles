@@ -25,9 +25,10 @@ config.cursor_blink_ease_out = "Constant"
 
 -- Tabs
 config.hide_tab_bar_if_only_one_tab = true
+config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.tab_max_width = 40
+config.tab_max_width = 32
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local icons = wezterm.nerdfonts
 
@@ -72,7 +73,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     { Text = icon .. " " },
     { Text = title },
     { Foreground = { Color = colors.palette.dim[1] } },
-    { Text = " | " },
+    { Text = " |" },
   }
 end)
 
