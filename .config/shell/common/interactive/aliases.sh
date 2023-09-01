@@ -72,10 +72,13 @@ _thisTerm=$(basename "/""$(ps -o cmd -f -p "$(cat /proc/"$$"/stat | cut -d \  -f
 export _thisTerm
 
 _termCmd=''
+_termCmdFallback='xfce4-terminal --working-directory='
 if [[ "$_thisTerm" == "xfce4-terminal" ]]; then
     _termCmd='xfce4-terminal --working-directory='
 elif [[ "$_thisTerm" == "wezterm-gui" ]]; then
     _termCmd='wezterm start --cwd '
+else
+    _termCmd=$_termCmdFallback
 fi
 
 if [[ $_termCmd != '' ]]; then
