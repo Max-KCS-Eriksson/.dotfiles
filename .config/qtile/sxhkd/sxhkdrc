@@ -12,10 +12,10 @@ super + n
 
 # Terminal
 super + Return
-    xfce4-terminal
+    wezterm
 
 super + KP_Enter
-    xfce4-terminal
+    wezterm
 
 # Dmenu run commands
 super + d
@@ -78,10 +78,10 @@ super + alt + x
 
 # Terminal
 ctrl + alt + t
-    xfce4-terminal
+    wezterm
 
 ctrl + alt + Return
-    xfce4-terminal
+    wezterm
 
 
 # FN Keys
