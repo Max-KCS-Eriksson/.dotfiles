@@ -2,13 +2,13 @@
 
 # Neorg
 super + w
-    xfce4-terminal --command "$HOME/.local/bin/neorg" --title=Neorg
+    xfce4-terminal --command "$HOME/.local/bin/neorg" --working-directory=$NEORG_HOME/main --title=Neorg
 
 super + t
-    xfce4-terminal --command "$HOME/.local/bin/neorg todo" --title=Neorg
+    xfce4-terminal --command "$HOME/.local/bin/neorg todo" --working-directory=$NEORG_HOME/todo --title=Neorg
 
 super + n
-    xfce4-terminal --command "$HOME/.local/bin/neorg --note" --title=Neorg --role=FloatNote
+    xfce4-terminal --command "$HOME/.local/bin/neorg --note" --working-directory=$NEORG_HOME/notes --title=Neorg --role=FloatNote
 
 # Terminal
 super + Return
