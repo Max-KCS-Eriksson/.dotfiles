@@ -21,3 +21,6 @@ export BAT_PAGER="/bin/less"
 
 # Neorg
 export NEORG_HOME="$HOME/Documents/neorg"
+
+# Used for opening anoter terminal in CWD
+export _termCmd='xfce4-terminal --working-directory='

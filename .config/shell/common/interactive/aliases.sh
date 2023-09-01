@@ -70,25 +70,13 @@ alias xcc="xclip -selection clipboard"
 # Terminal
 _thisTerm=$(basename "/""$(ps -o cmd -f -p "$(cat /proc/"$$"/stat | cut -d \  -f 4)" | tail -1 | sed 's/ .*$//')")
 export _thisTerm
-
-_termCmd=''
-_termCmdFallback='xfce4-terminal --working-directory='
-if [[ "$_thisTerm" == "xfce4-terminal" ]]; then
+if [[ "$_thisTerm" == 'xfce4-terminal' ]]; then
     _termCmd='xfce4-terminal --working-directory='
-elif [[ "$_thisTerm" == "wezterm-gui" ]]; then
+elif [[ "$_thisTerm" == 'wezterm-gui' ]]; then
     _termCmd='wezterm start --cwd '
-else
-    _termCmd=$_termCmdFallback
 fi
-
-if [[ $_termCmd != '' ]]; then
-    alias another="$_termCmd"'$PWD'
-
-    # HACK: Used for spawning another terminal from Neovim
-    export _termCmd
-else
-    unset _termCmd
-fi
+alias another="$_termCmd"'$PWD'
+export _termCmd
 
 # Input settings
 alias keyus="setxkbmap -layout us -variant altgr-intl -option nodeadkeys"
