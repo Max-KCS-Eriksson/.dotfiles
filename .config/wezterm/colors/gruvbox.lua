@@ -90,4 +90,49 @@ M.color_scheme = {
   quick_select_match_fg = { Color = "#ffffff" },
 }
 
+M.color_scheme.tab_bar = {
+  inactive_tab_edge = M.palette.dim[1],
+  background = M.theme.background,
+  active_tab = {
+    bg_color = M.palette.black[1],
+    fg_color = M.palette.dim[2],
+    intensity = "Bold", -- Options: "Half", "Normal" or "Bold"
+    underline = "None", -- Options: "None", "Single" or "Double"
+    italic = false,
+    strikethrough = false,
+  },
+  inactive_tab = {
+    bg_color = M.palette.black[1],
+    fg_color = M.palette.dim[1],
+    intensity = "Normal", -- Options: "Half", "Normal" or "Bold"
+    underline = "None", -- Options: "None", "Single" or "Double"
+    italic = false,
+    strikethrough = false,
+  },
+  inactive_tab_hover = {
+    bg_color = M.palette.dim[1],
+    fg_color = M.palette.black[1],
+    intensity = "Normal", -- Options: "Half", "Normal" or "Bold"
+    underline = "None", -- Options: "None", "Single" or "Double"
+    italic = false,
+    strikethrough = false,
+  },
+  new_tab = {
+    bg_color = M.palette.black[1],
+    fg_color = M.palette.dim[2],
+    intensity = "Normal", -- Options: "Half", "Normal" or "Bold"
+    underline = "None", -- Options: "None", "Single" or "Double"
+    italic = false,
+    strikethrough = false,
+  },
+  new_tab_hover = {
+    bg_color = M.palette.dim[2],
+    fg_color = M.palette.black[1],
+    intensity = "Normal", -- Options: "Half", "Normal" or "Bold"
+    underline = "None", -- Options: "None", "Single" or "Double"
+    italic = false,
+    strikethrough = false,
+  },
+}
+
 return M
