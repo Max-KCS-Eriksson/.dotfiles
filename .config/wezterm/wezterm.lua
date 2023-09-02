@@ -1,6 +1,9 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
+
 local theme = "gruvbox"
 local colors = require("colors." .. theme)
+
 local config = {}
 
 -- In newer versions of wezterm, use the config_builder which will help provide clearer
@@ -42,6 +45,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local pwd = tab.active_pane.current_working_dir:gsub("^file://[^/]+", ""):gsub("%%20", " ")
   local pwdRelativeHome = pwd:gsub("^/home/[^/]+", "~")
 
+  local function trimTail(string, chars)
+    return string:gsub(chars .. "$", "")
+  end
+
   if pwdBasefolder == os.getenv("USER") then
     pwdBasefolder = "~/"
   end
@@ -53,7 +60,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
       icon = icons.cod_gear
     end
     if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. pwdRelativeHome:gsub("^~/.config/", ""):gsub("/$", "")
+      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
+    end
+
+    if pwdRelativeHome:find("^~/.local/bin") then
+      title = trimTail(pwdRelativeHome, "/")
     end
   elseif title:find("^docs") then
     icon = icons.cod_book
@@ -62,7 +73,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     icon = icons.custom_vim
 
     if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. pwdRelativeHome:gsub("^~/.config/", ""):gsub("/$", "")
+      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
+    end
+
+    if pwdRelativeHome:find("^~/.local/bin") then
+      title = trimTail(pwdRelativeHome, "/")
     end
   else
     icon = icons.cod_server_process
@@ -75,6 +90,14 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     { Foreground = { Color = colors.palette.dim[1] } },
     { Text = " |" },
   }
+end)
+
+-- Status bar
+wezterm.on("update-right-status", function(window, pane)
+  window:set_right_status(wezterm.format({
+    { Foreground = { Color = colors.palette.dim[2] } },
+    { Text = "| " .. window:active_workspace() .. " " },
+  }))
 end)
 
 -- Window
@@ -97,14 +120,41 @@ config.scrollback_lines = 3000
 -- Keys
 config.keys = {
   -- Scrollback
-  { key = "UpArrow",   mods = "SHIFT",      action = wezterm.action.ScrollByLine(-1) },
-  { key = "DownArrow", mods = "SHIFT",      action = wezterm.action.ScrollByLine(1) },
-  { key = "UpArrow",   mods = "SHIFT|CTRL", action = wezterm.action.ScrollByLine(-1) },
-  { key = "DownArrow", mods = "SHIFT|CTRL", action = wezterm.action.ScrollByLine(1) },
-  { key = "PageUp",    mods = "SHIFT",      action = wezterm.action.ScrollByPage(-0.5) },
-  { key = "PageDown",  mods = "SHIFT",      action = wezterm.action.ScrollByPage(0.5) },
-  { key = "PageUp",    mods = "SHIFT|CTRL", action = wezterm.action.ScrollByPage(-0.5) },
-  { key = "PageDown",  mods = "SHIFT|CTRL", action = wezterm.action.ScrollByPage(0.5) },
+  { key = "UpArrow",   mods = "SHIFT",      action = act.ScrollByLine(-1) },
+  { key = "DownArrow", mods = "SHIFT",      action = act.ScrollByLine(1) },
+  { key = "UpArrow",   mods = "SHIFT|CTRL", action = act.ScrollByLine(-1) },
+  { key = "DownArrow", mods = "SHIFT|CTRL", action = act.ScrollByLine(1) },
+  { key = "PageUp",    mods = "SHIFT",      action = act.ScrollByPage(-0.5) },
+  { key = "PageDown",  mods = "SHIFT",      action = act.ScrollByPage(0.5) },
+  { key = "PageUp",    mods = "SHIFT|CTRL", action = act.ScrollByPage(-0.5) },
+  { key = "PageDown",  mods = "SHIFT|CTRL", action = act.ScrollByPage(0.5) },
+  { key = "End",       mods = "SHIFT",      action = act.ScrollToBottom },
+  { key = "Home",      mods = "SHIFT",      action = act.ScrollToTop },
+  { key = "End",       mods = "SHIFT|CTRL", action = act.ScrollToBottom },
+  { key = "Home",      mods = "SHIFT|CTRL", action = act.ScrollToTop },
+  -- Workspaces
+  {
+    key = "W",
+    mods = "CTRL|SHIFT",
+    action = act.PromptInputLine({
+      description = wezterm.format({
+        { Attribute = { Intensity = "Normal" } },
+        { Foreground = { Color = colors.theme.primary } },
+        { Text = "Enter workspace name:" },
+      }),
+      action = wezterm.action_callback(function(window, pane, input_name)
+        -- `input_name` is `nil` if <Esc> without entering anything, empty string if only <Return>
+        if input_name then
+          window:perform_action(
+            act.SwitchToWorkspace({
+              name = input_name,
+            }),
+            pane
+          )
+        end
+      end),
+    }),
+  },
 }
 
 return config
