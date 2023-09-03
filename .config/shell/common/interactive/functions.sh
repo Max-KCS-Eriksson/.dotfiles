@@ -24,10 +24,12 @@ loadcompletion() {
 # Get directory of given filename upwards from cwd
 findup() {
     path_name=$PWD
-    while [[ "$path_name" != "" && ! -e "$path_name/$1" ]]; do
+    while [[ "$path_name" != '' && ! -e "$path_name/$1" ]]; do
         path_name=${path_name%/*}
     done
     echo "$path_name"
+
+    unset path_name
 }
 
 # `cd` into project root dir
@@ -64,7 +66,9 @@ cdr() {
     for anchor in "${anchor_files[@]}"; do
         anchor_dir=$(findup "$anchor")
         if [[ $anchor_dir != '' ]]; then
-            cd "$anchor_dir" || exit
+            cd "$anchor_dir" || return 1
         fi
     done
+
+    unset anchor anchor_dir anchor_files
 }
