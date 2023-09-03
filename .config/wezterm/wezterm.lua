@@ -27,7 +27,7 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
 -- Tabs
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -132,29 +132,6 @@ config.keys = {
   { key = "Home",      mods = "SHIFT",      action = act.ScrollToTop },
   { key = "End",       mods = "SHIFT|CTRL", action = act.ScrollToBottom },
   { key = "Home",      mods = "SHIFT|CTRL", action = act.ScrollToTop },
-  -- Workspaces
-  {
-    key = "W",
-    mods = "CTRL|SHIFT",
-    action = act.PromptInputLine({
-      description = wezterm.format({
-        { Attribute = { Intensity = "Normal" } },
-        { Foreground = { Color = colors.theme.primary } },
-        { Text = "Enter workspace name:" },
-      }),
-      action = wezterm.action_callback(function(window, pane, input_name)
-        -- `input_name` is `nil` if <Esc> without entering anything, empty string if only <Return>
-        if input_name then
-          window:perform_action(
-            act.SwitchToWorkspace({
-              name = input_name,
-            }),
-            pane
-          )
-        end
-      end),
-    }),
-  },
 }
 
 return config
