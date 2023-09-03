@@ -99,7 +99,7 @@ source "$XDG_CONFIG_HOME/shell/common/interactive/aliases.sh"
 
 # Functions and utils
 
-source "$XDG_CONFIG_HOME/shell/common/functions.sh"
+source "$XDG_CONFIG_HOME/shell/common/interactive/functions.sh"
 source "$XDG_CONFIG_HOME/shell/zsh/util/init.zsh"
 
 
@@ -111,11 +111,11 @@ eval "$(rtx activate zsh)"
 # Greeter
 
 # HACK: Show greeter only once after login
-if [[  $( cat "$XDG_STATE_HOME/zsh/.show_greeter") == 1 ]]; then
-    # NOTE: Source after `cmd_colors.sh`
-    bash "$XDG_CONFIG_HOME/shell/common/extras/greeter.sh"
-    echo 0 >"$XDG_STATE_HOME/zsh/.show_greeter"
-fi
+# if [[  $( cat "$XDG_STATE_HOME/zsh/.show_greeter") == 1 ]]; then
+#     # NOTE: Source after `cmd_colors.sh`
+#     bash "$XDG_CONFIG_HOME/shell/common/interactive/extras/greeter.sh"
+#     echo 0 >"$XDG_STATE_HOME/zsh/.show_greeter"
+# fi
 
 
 # Right side prompt indentation
