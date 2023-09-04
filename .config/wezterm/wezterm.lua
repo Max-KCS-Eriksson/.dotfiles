@@ -1,8 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local theme = "gruvbox"
-local colors = require("colors." .. theme)
+local colors = require("settings.theme").colors
 
 local config = {}
 
@@ -32,82 +31,10 @@ config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_max_width = 32
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local icons = wezterm.nerdfonts
-
-  local title = tab.tab_title
-  if not title or title == "" then
-    title = tab.active_pane.title
-  end
-
-  local icon
-  local pwdBasefolder = tab.active_pane.current_working_dir:gsub(".*/(.*)/$", "%1"):gsub("%%20", " ")
-  local pwd = tab.active_pane.current_working_dir:gsub("^file://[^/]+", ""):gsub("%%20", " ")
-  local pwdRelativeHome = pwd:gsub("^/home/[^/]+", "~")
-
-  local function trimTail(string, chars)
-    return string:gsub(chars .. "$", "")
-  end
-
-  if pwdBasefolder == os.getenv("USER") then
-    pwdBasefolder = "~/"
-  end
-  if title == "zsh" or title == "wezterm" then
-    title = pwdBasefolder
-    icon = icons.cod_folder_opened
-
-    if pwdRelativeHome:find("^~/.config") then
-      icon = icons.cod_gear
-    end
-    if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
-    end
-
-    if pwdRelativeHome:find("^~/.local/bin") then
-      title = trimTail(pwdRelativeHome, "/")
-    end
-  elseif title:find("^docs") then
-    icon = icons.cod_book
-  elseif title:find("^n?vim") then
-    title = pwdBasefolder
-    icon = icons.custom_vim
-
-    if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
-    end
-
-    if pwdRelativeHome:find("^~/.local/bin") then
-      title = trimTail(pwdRelativeHome, "/")
-    end
-  elseif title:find("^python") then
-    title = "python"
-    icon = icons.seti_python
-  elseif title == "java" then
-    icon = icons.fae_java
-  elseif title == "lua" then
-    icon = icons.seti_lua
-  elseif title == "node" then
-    icon = icons.md_nodejs
-  else
-    icon = icons.cod_server_process
-  end
-
-  return {
-    { Text = " " },
-    { Text = icon .. " " },
-    { Text = title },
-    { Foreground = { Color = colors.palette.dim[1] } },
-    { Text = " |" },
-  }
-end)
+wezterm.on("format-tab-title", require("settings.tab_bar").format_tab_title)
 
 -- Status bar
-wezterm.on("update-right-status", function(window, pane)
-  window:set_right_status(wezterm.format({
-    { Foreground = { Color = colors.palette.dim[2] } },
-    { Text = "| " .. window:active_workspace() .. " " },
-  }))
-end)
+wezterm.on("update-right-status", require("settings.tab_bar").update_right_status)
 
 -- Window
 config.window_frame = {
@@ -127,20 +54,6 @@ config.window_padding = {
 config.scrollback_lines = 3000
 
 -- Keys
-config.keys = {
-  -- Scrollback
-  { key = "UpArrow",   mods = "SHIFT",      action = act.ScrollByLine(-1) },
-  { key = "DownArrow", mods = "SHIFT",      action = act.ScrollByLine(1) },
-  { key = "UpArrow",   mods = "SHIFT|CTRL", action = act.ScrollByLine(-1) },
-  { key = "DownArrow", mods = "SHIFT|CTRL", action = act.ScrollByLine(1) },
-  { key = "PageUp",    mods = "SHIFT",      action = act.ScrollByPage(-0.5) },
-  { key = "PageDown",  mods = "SHIFT",      action = act.ScrollByPage(0.5) },
-  { key = "PageUp",    mods = "SHIFT|CTRL", action = act.ScrollByPage(-0.5) },
-  { key = "PageDown",  mods = "SHIFT|CTRL", action = act.ScrollByPage(0.5) },
-  { key = "End",       mods = "SHIFT",      action = act.ScrollToBottom },
-  { key = "Home",      mods = "SHIFT",      action = act.ScrollToTop },
-  { key = "End",       mods = "SHIFT|CTRL", action = act.ScrollToBottom },
-  { key = "Home",      mods = "SHIFT|CTRL", action = act.ScrollToTop },
-}
+config.keys = require("settings.keymaps")
 
 return config
