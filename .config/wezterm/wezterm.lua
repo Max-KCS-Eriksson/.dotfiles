@@ -79,6 +79,15 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
     if pwdRelativeHome:find("^~/.local/bin") then
       title = trimTail(pwdRelativeHome, "/")
     end
+  elseif title:find("^python") then
+    title = "python"
+    icon = icons.seti_python
+  elseif title == "java" then
+    icon = icons.fae_java
+  elseif title == "lua" then
+    icon = icons.seti_lua
+  elseif title == "node" then
+    icon = icons.md_nodejs
   else
     icon = icons.cod_server_process
   end

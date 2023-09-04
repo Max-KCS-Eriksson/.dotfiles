@@ -21,6 +21,8 @@ M.theme = {
 
   background = M.palette.black[1],
   foreground = M.palette.white[2],
+
+  background_lighter = "#2D2D2D",
 }
 
 M.color_scheme = {
