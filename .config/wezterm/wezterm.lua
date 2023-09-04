@@ -3,6 +3,9 @@ local act = wezterm.action
 
 local colors = require("settings.theme").colors
 
+wezterm.on("format-tab-title", require("settings.tab_bar").format_tab_title)
+wezterm.on("update-right-status", require("settings.tab_bar").update_right_status)
+
 local config = {}
 
 -- In newer versions of wezterm, use the config_builder which will help provide clearer
@@ -31,10 +34,6 @@ config.show_new_tab_button_in_tab_bar = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.tab_max_width = 32
-wezterm.on("format-tab-title", require("settings.tab_bar").format_tab_title)
-
--- Status bar
-wezterm.on("update-right-status", require("settings.tab_bar").update_right_status)
 
 -- Window
 config.window_frame = {
