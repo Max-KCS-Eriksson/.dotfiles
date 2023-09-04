@@ -73,7 +73,7 @@ export _thisTerm
 if [[ "$_thisTerm" == 'xfce4-terminal' ]]; then
     _termCmd='xfce4-terminal --working-directory='
 elif [[ "$_thisTerm" == 'wezterm-gui' ]]; then
-    _termCmd='wezterm start --cwd '
+    _termCmd='wezterm cli spawn --new-window --cwd '
 fi
 alias another="$_termCmd"'$PWD'
 export _termCmd
