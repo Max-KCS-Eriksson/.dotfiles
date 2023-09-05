@@ -21,35 +21,35 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     return string:gsub(chars .. "$", "")
   end
 
+  local function formatPwdRelativeHome(pwdRelativeHome)
+    if pwdRelativeHome:find("^~/.config/[^/]+") then
+      return "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
+    end
+
+    if pwdRelativeHome:find("^~/.local/bin") then
+      return trimTail(pwdRelativeHome, "/")
+    end
+  end
+
   if pwdBasefolder == os.getenv("USER") then
     pwdBasefolder = "~/"
   end
   if title == "zsh" or title == "wezterm" then
     title = pwdBasefolder
     icon = icons.cod_folder_opened
-
     if pwdRelativeHome:find("^~/.config") then
       icon = icons.cod_gear
     end
-    if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
-    end
-
-    if pwdRelativeHome:find("^~/.local/bin") then
-      title = trimTail(pwdRelativeHome, "/")
+    if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
+      title = formatPwdRelativeHome(pwdRelativeHome)
     end
   elseif title:find("^docs") then
     icon = icons.cod_book
   elseif title:find("^n?vim") then
     title = pwdBasefolder
     icon = icons.custom_vim
-
-    if pwdRelativeHome:find("^~/.config/[^/]+") then
-      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
-    end
-
-    if pwdRelativeHome:find("^~/.local/bin") then
-      title = trimTail(pwdRelativeHome, "/")
+    if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
+      title = formatPwdRelativeHome(pwdRelativeHome)
     end
   elseif title:find("^python") then
     title = "python"
