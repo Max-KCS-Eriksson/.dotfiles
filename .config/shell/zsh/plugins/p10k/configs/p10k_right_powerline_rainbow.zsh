@@ -338,10 +338,10 @@
   typeset -g POWERLEVEL9K_VCS_CONFLICTED_ICON='~'
   typeset -g POWERLEVEL9K_VCS_STASHES_ICON='*'
 
-  typeset -g POWERLEVEL9K_VCS_COMMITS_BEHIND_ICON='⇣'  # '↓', '⇣'
-  typeset -g POWERLEVEL9K_VCS_COMMITS_AHEAD_ICON='⇡'  # '↑', '⇡'
-  typeset -g POWERLEVEL9K_VCS_PUSH_COMMITS_BEHIND_ICON='⇠'  # '←', '⇠'
-  typeset -g POWERLEVEL9K_VCS_PUSH_COMMITS_AHEAD_ICON='⇢'  # '→', '⇢'
+  typeset -g POWERLEVEL9K_VCS_COMMITS_BEHIND_ICON='↓'  # '↓', '⇣'
+  typeset -g POWERLEVEL9K_VCS_COMMITS_AHEAD_ICON='↑'  # '↑', '⇡'
+  typeset -g POWERLEVEL9K_VCS_PUSH_COMMITS_BEHIND_ICON='←'  # '←', '⇠'
+  typeset -g POWERLEVEL9K_VCS_PUSH_COMMITS_AHEAD_ICON='→'  # '→', '⇢'
 
   # Formatter for Git status.
   #
@@ -958,7 +958,7 @@
   # typeset -g POWERLEVEL9K_VIRTUALENV_VISUAL_IDENTIFIER_EXPANSION='⭐'  # Default
 
   # The name of the venv.
-  typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='${P9K_CONTENT:0}'
+  typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='${P9K_CONTENT:0:-9}'
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
