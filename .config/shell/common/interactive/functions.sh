@@ -65,10 +65,12 @@ cdr() {
 
     for anchor in "${anchor_files[@]}"; do
         anchor_dir=$(findup "$anchor")
-        if [[ $anchor_dir != '' ]]; then
+        if [[ $anchor_dir != '' && $anchor_dir != "$PWD" ]]; then
             cd "$anchor_dir" || return 1
+            return 0
         fi
     done
+    [[ $anchor_dir == '' ]] && return 1
 
     unset anchor anchor_dir anchor_files
 }
