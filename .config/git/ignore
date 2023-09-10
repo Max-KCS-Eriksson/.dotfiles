@@ -12,5 +12,10 @@ comparison_*.html
 *.log
 *.bak
 
+# Personal project notes
+notes.norg
+notes.md
+notes.txt
+
 # Python
 __pycache__/
