@@ -77,5 +77,7 @@ cdr() {
 
 fcd() {
     fileLoc="$(fzf)"
-    cd "${fileLoc%/*}/" || exit 1
+    if [[ "$fileLoc" != '' ]]; then
+        cd "${fileLoc%/*}/" || exit 1
+    fi
 }
