@@ -74,3 +74,8 @@ cdr() {
 
     unset anchor anchor_dir anchor_files
 }
+
+fcd() {
+    fileLoc="$(fzf)"
+    cd "${fileLoc%/*}/" || exit 1
+}
