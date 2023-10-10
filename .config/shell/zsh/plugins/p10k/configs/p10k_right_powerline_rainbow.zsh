@@ -958,7 +958,16 @@
   # typeset -g POWERLEVEL9K_VIRTUALENV_VISUAL_IDENTIFIER_EXPANSION='⭐'  # Default
 
   # The name of the venv.
-  typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='${P9K_CONTENT:0:-9}'
+  function format_venv_name() {
+    virtualenv_name=$1
+    if [[ ${#virtualenv_name} -gt 9 && $virtualenv_name[-9] == "-" ]]; then
+      echo "${virtualenv_name:0:-9}"
+    else
+      echo "$virtualenv_name"
+    fi
+  }
+  typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='$(format_venv_name $P9K_CONTENT)'
+  # typeset -g POWERLEVEL9K_VIRTUALENV_CONTENT_EXPANSION='${P9K_CONTENT}'
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
