@@ -38,7 +38,6 @@ cdr() {
     anchor_files=(
         .bzr
         .citc
-        .git
         .hg
         .node-version
         .python-version
@@ -61,6 +60,7 @@ cdr() {
         Pipfile
         pom.xml
         settings.gradle
+        .git # Check git last as there can be sub-anchors within a git repo
     )
 
     for anchor in "${anchor_files[@]}"; do
