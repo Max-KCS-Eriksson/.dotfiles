@@ -7,6 +7,9 @@ p10k.zsh
 webpage_monitor_settings.py
 comparison_*.html
 
+# Roll my own dir auto cmd's
+.auto
+
 # General ignore patterns
 
 *.log
