@@ -27,8 +27,13 @@ alias mpv=" mpv"
 alias feh=" feh"
 
 # Ease of use
-alias poweroff="sudo poweroff"
-alias reboot="sudo reboot"
+if command -v loginctl &>/dev/null; then
+    alias poweroff="loginctl poweroff"
+    alias reboot="loginctl reboot"
+else
+    alias poweroff="sudo poweroff"
+    alias reboot="sudo reboot"
+fi
 
 # Shorthand aliases
 
