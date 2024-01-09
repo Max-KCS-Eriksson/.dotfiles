@@ -105,7 +105,7 @@ source "$XDG_CONFIG_HOME/shell/zsh/util/init.zsh"
 
 # Runtime management
 
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 
 
 # Greeter
