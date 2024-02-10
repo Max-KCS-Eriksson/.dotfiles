@@ -13,9 +13,9 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
   end
 
   local icon
-  local pwdBasefolder = tab.active_pane.current_working_dir:gsub(".*/(.*)/$", "%1"):gsub("%%20", " ")
-  local pwd = tab.active_pane.current_working_dir:gsub("^file://[^/]+", ""):gsub("%%20", " ")
-  local pwdRelativeHome = pwd:gsub("^/home/[^/]+", "~")
+  local pwdBasefolder = tostring(tab.active_pane.current_working_dir):gsub(".*/(.*)/$", "%1"):gsub("%%20", " ") or ""
+  local pwd = tostring(tab.active_pane.current_working_dir):gsub("^file://[^/]+", ""):gsub("%%20", " ") or ""
+  local pwdRelativeHome = pwd:gsub("^/home/[^/]+", "~") or ""
 
   local function trimTail(string, chars)
     return string:gsub(chars .. "$", "")
@@ -34,7 +34,7 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
   if pwdBasefolder == os.getenv("USER") then
     pwdBasefolder = "~/"
   end
-  if title == "zsh" or title == "wezterm" then
+  if title:find("^zsh") or title:find("^wezterm") or title:find("^ls") or title:find("^clear") then
     title = pwdBasefolder
     icon = icons.cod_folder_opened
     if pwdRelativeHome:find("^~/.config") then
