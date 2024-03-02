@@ -35,21 +35,24 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     pwdBasefolder = "~/"
   end
   if title:find("^zsh") or title:find("^wezterm") or title:find("^ls") or title:find("^clear") then
-    title = pwdBasefolder
-    icon = icons.cod_folder_opened
-    if pwdRelativeHome:find("^~/.config") then
-      icon = icons.cod_gear
-    end
     if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
       title = formatPwdRelativeHome(pwdRelativeHome)
+    else
+      title = pwdBasefolder
+    end
+    if pwdRelativeHome:find("^~/.config") then
+      icon = icons.cod_gear
+    else
+      icon = icons.cod_folder_opened
     end
   elseif title:find("^docs") then
     icon = icons.cod_book
   elseif title:find("^n?vim") then
-    title = pwdBasefolder
     icon = icons.custom_vim
     if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
       title = formatPwdRelativeHome(pwdRelativeHome)
+    else
+      title = pwdBasefolder
     end
   elseif title:find("^python") then
     title = "python"
