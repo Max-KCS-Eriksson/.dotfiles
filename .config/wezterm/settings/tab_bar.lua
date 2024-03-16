@@ -21,39 +21,34 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     return string:gsub(chars .. "$", "")
   end
 
-  local function formatPwdRelativeHome(pwdRelativeHome)
+  local function formatCwdTitle()
+    local title
     if pwdRelativeHome:find("^~/.config/[^/]+") then
-      return "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
-    end
-
-    if pwdRelativeHome:find("^~/.local/bin") then
-      return trimTail(pwdRelativeHome, "/")
-    end
-  end
-
-  if pwdBasefolder == os.getenv("USER") then
-    pwdBasefolder = "~/"
-  end
-  if title:find("^zsh") or title:find("^wezterm") or title:find("^ls") or title:find("^clear") then
-    if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
-      title = formatPwdRelativeHome(pwdRelativeHome)
+      title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
+    elseif pwdRelativeHome:find("^~/.local/bin") then
+      title = trimTail(pwdRelativeHome, "/")
     else
+      if pwdBasefolder == os.getenv("USER") then
+        pwdBasefolder = "~/"
+      end
       title = pwdBasefolder
     end
+    return title
+  end
+
+  if title:find("^zsh") or title:find("^wezterm") or title:find("^ls") or title:find("^clear") then
+    title = formatCwdTitle()
+
     if pwdRelativeHome:find("^~/.config") then
       icon = icons.cod_gear
     else
       icon = icons.cod_folder_opened
     end
+  elseif title:find("^n?vim") then
+    title = formatCwdTitle()
+    icon = icons.custom_vim
   elseif title:find("^docs") then
     icon = icons.cod_book
-  elseif title:find("^n?vim") then
-    icon = icons.custom_vim
-    if pwdRelativeHome:find("^~/.config/[^/]+") or pwdRelativeHome:find("^~/.local/bin") then
-      title = formatPwdRelativeHome(pwdRelativeHome)
-    else
-      title = pwdBasefolder
-    end
   elseif title:find("^python") then
     title = "python"
     icon = icons.seti_python
