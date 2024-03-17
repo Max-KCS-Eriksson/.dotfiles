@@ -26,7 +26,7 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     if pwdRelativeHome:find("^~/.config/[^/]+") then
       title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
     elseif pwdRelativeHome:find("^~/.local/bin") then
-      title = trimTail(pwdRelativeHome, "/")
+      title = trimTail(pwdRelativeHome:gsub("^~/", ""), "/")
     else
       if pwdBasefolder == os.getenv("USER") then
         pwdBasefolder = "~/"
