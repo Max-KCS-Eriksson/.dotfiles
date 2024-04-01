@@ -36,7 +36,11 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     return title
   end
 
-  if title:find("^zsh") or title:find("^wezterm") or title:find("^ls") or title:find("^clear") then
+  local function isCmdInTitle()
+    return title:find("^ls") or title:find("^clear") or title:find("^bat")
+  end
+
+  if title:find("^zsh") or title:find("^wezterm") or isCmdInTitle() then
     title = formatCwdTitle()
 
     if pwdRelativeHome:find("^~/.config") then
