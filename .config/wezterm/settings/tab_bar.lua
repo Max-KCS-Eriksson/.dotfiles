@@ -27,6 +27,8 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
       title = "." .. trimTail(pwdRelativeHome:gsub("^~/.config/", ""), "/")
     elseif pwdRelativeHome:find("^~/.local/bin") then
       title = trimTail(pwdRelativeHome:gsub("^~/", ""), "/")
+    elseif not pwd:find(os.getenv("USER")) then
+      title = trimTail(pwd, "/")
     else
       if pwdBasefolder == os.getenv("USER") then
         pwdBasefolder = "~/"
@@ -37,7 +39,11 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
   end
 
   local function isCmdInTitle()
-    return title:find("^ls") or title:find("^clear") or title:find("^bat")
+    return title:find("^ls")
+        or title:find("^clear")
+        or title:find("^bat")
+        or title:find("^git")
+        or title:find("^env")
   end
 
   if title:find("^zsh") or title:find("^wezterm") or isCmdInTitle() then
