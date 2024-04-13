@@ -10,6 +10,9 @@ comparison_*.html
 # Roll my own dir auto cmd's
 .auto
 
+# Dir backup config
+.copylist
+
 # General ignore patterns
 
 *.log
