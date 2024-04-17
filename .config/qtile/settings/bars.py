@@ -18,7 +18,6 @@ bar_defaults = dict(
 def init_main_bar():
     widgets_list = [
         # Left
-        # widgets.get_workspaces(),
         widgets.get_custom_workspaces(),
         widgets.sep,
         widgets.get_current_screen_indicator(),
@@ -26,8 +25,6 @@ def init_main_bar():
         widgets.get_current_layout_icon(),
         widgets.get_current_layout(),
         widgets.sep,
-        # widgets.caps_num_lock_indicator,
-        # widgets.sep,
         widgets.webpage_monitor_icon,
         widgets.webpage_monitor_widget,
         # Center
@@ -76,7 +73,6 @@ def init_main_bar():
 def init_secondary_bar():
     widgets_list = [
         # Left
-        # widgets.get_workspaces(),
         widgets.get_custom_workspaces(),
         widgets.sep,
         widgets.get_current_screen_indicator(),
