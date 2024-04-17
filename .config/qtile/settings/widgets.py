@@ -118,7 +118,7 @@ def get_current_layout_icon():
     return widget.CurrentLayoutIcon(
         scale=0.5,
         use_mask=True,
-        padding=0,
+        padding=5,
         background=BACKGROUND,
     )
 
@@ -270,8 +270,8 @@ poweroff = widget.TextBox(  # Poweroff widget
     foreground=COLORS["critical"],
     padding=5,
     mouse_callbacks={
-        "Button1": lambda: subprocess.run("poweroff"),  # Left click
-        "Button3": lambda: subprocess.run("reboot"),  # Right click
+        "Button1": lambda: subprocess.run(["loginctl", "poweroff"]),  # Left click
+        "Button3": lambda: subprocess.run(["loginctl", "reboot"]),  # Right click
     },
 )
 
