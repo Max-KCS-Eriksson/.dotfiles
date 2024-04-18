@@ -13,15 +13,15 @@ comparison_*.html
 # Dir backup config
 .copylist
 
-# General ignore patterns
-
-*.log
-*.bak
-
 # Personal project notes
 notes.norg
 notes.md
 notes.txt
+
+# General ignore patterns
+
+*.log
+*.bak
 
 # Python
 __pycache__/
