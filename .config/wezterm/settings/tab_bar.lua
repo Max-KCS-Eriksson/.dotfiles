@@ -37,7 +37,9 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
     end
 
     if #tostring(title) > max_width then
-      title = title:sub(1, max_width - (5 + 3)) .. "..."
+      local truncate = "..."
+      local padding = 5 + #truncate
+      title = title:sub(1, max_width - padding) .. truncate
     end
 
     return title
@@ -51,6 +53,7 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
         or title:find("^git")
         or title:find("^env")
         or title:find("^bash")
+        or title:find("^tree")
   end
 
   if title:find("^zsh") or title:find("^wezterm") or isCmdInTitle() then
