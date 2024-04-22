@@ -35,15 +35,22 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
       end
       title = pwdBasefolder
     end
+
+    if #tostring(title) > max_width then
+      title = title:sub(1, max_width - (5 + 3)) .. "..."
+    end
+
     return title
   end
 
   local function isCmdInTitle()
     return title:find("^ls")
         or title:find("^clear")
+        or title:find("^cat")
         or title:find("^bat")
         or title:find("^git")
         or title:find("^env")
+        or title:find("^bash")
   end
 
   if title:find("^zsh") or title:find("^wezterm") or isCmdInTitle() then
