@@ -36,7 +36,7 @@ M.format_tab_title = function(tab, tabs, panes, config, hover, max_width)
       title = pwdBasefolder
     end
 
-    if #tostring(title) > max_width then
+    if #tostring(title) > max_width - 2 then
       local truncate = "..."
       local padding = 5 + #truncate
       title = title:sub(1, max_width - padding) .. truncate
