@@ -1,10 +1,14 @@
 #!/bin/bash
 
 function run {
-	if ! pgrep -x "$(basename "$1" | head -c 15)" 1>/dev/null; then
-		"$@" &
-	fi
+    if ! pgrep -x "$(basename "$1" | head -c 15)" 1>/dev/null; then
+        "$@" &
+    fi
 }
+
+if [[ "$(xrandr | grep -c ' connected ')" -gt 1 ]]; then
+    xrandr --output eDP-1 --scale 0.7
+fi
 
 # Wallpaper
 
