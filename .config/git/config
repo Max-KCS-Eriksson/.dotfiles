@@ -40,11 +40,12 @@
 
 [alias]
     ; Status and log
-	s = status
-	ll = log --oneline
-	last = log -1 HEAD --stat
+    s = status
+    ls = log --stat
+    ll = log --oneline
+    last = log -1 HEAD --stat
     lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
-	fs = !git rev-list --all | xargs git grep -F ; Find string
+    fs = !git rev-list --all | xargs git grep -F ; Find string
 
     ; Diffs
     diff = diff -M
