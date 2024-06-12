@@ -1,4 +1,4 @@
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 
 
 def _window_to_group(qtile, direction=None):

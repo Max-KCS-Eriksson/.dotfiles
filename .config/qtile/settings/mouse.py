@@ -1,5 +1,5 @@
-from libqtile.command import lazy
 from libqtile.config import Drag
+from libqtile.lazy import lazy
 
 from .keys import META
 

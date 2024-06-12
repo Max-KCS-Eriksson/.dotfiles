@@ -1,5 +1,5 @@
 from libqtile.config import Key
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 
 from .helpers.window_management import (
     window_to_next_screen,
