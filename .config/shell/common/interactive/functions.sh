@@ -80,4 +80,6 @@ fcd() {
     if [[ "$fileLoc" != '' ]]; then
         cd "${fileLoc%/*}/" || exit 1
     fi
+
+    unset fileLoc
 }
