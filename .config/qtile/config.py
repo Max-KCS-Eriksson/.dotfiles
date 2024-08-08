@@ -81,6 +81,8 @@ def _assign_client_to_default_group(client, **kwargs):
     excluded_wm_roles = kwargs["excluded_wm_roles"]
 
     # Find out if client has a default group specified or it is to be excluded.
+    group = None  # Assume client has no default group
+
     wm_class = client.get_wm_class()[0].lower()
     if wm_class in wm_class_default_group:
         group = wm_class_default_group[wm_class]
@@ -98,7 +100,8 @@ def _assign_client_to_default_group(client, **kwargs):
         return
 
     # Move client to default group.
-    _send_client_to_group(client, group)
+    if group:
+        _send_client_to_group(client, group)
 
 
 # Hooks
