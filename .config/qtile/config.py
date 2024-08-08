@@ -95,7 +95,8 @@ def _assign_client_to_default_group(client, **kwargs):
     if wm_name in wm_name_default_group:
         group = wm_name_default_group[wm_name]
 
-    wm_role = client.get_wm_role().lower()
+    wm_role = client.get_wm_role() is not None and client.get_wm_role().lower()
+    # wm_role = client.get_wm_role().lower()
     if wm_role in excluded_wm_roles:
         return
 
