@@ -72,3 +72,6 @@
 
     ; List global config
 	gl = config --global -l
+
+    ; Repo config override local config
+    email = git config user.email
