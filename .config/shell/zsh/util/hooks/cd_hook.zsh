@@ -14,6 +14,12 @@ _cd_hook() {
             echo -e '\n Sourcing ".auto" file'
             source ./.auto
         fi
+
+        # Local git config.
+        if [[ -f ./.gitconfig ]]; then
+            bash ./.gitconfig
+            echo -e "\n$(cat ./.gitconfig)"
+        fi
     fi
 }
 
